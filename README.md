@@ -7,6 +7,6 @@ Algorithms - Fit tetris pieces into the smallest square possible.
 
 
 # Team
-<https://github.com/Jemmeh>
+Jem Cope <https://github.com/Jemmeh>
 
-<https://github.com/tasertasertaser>
+Crystal Schuller <https://github.com/tasertasertaser>
