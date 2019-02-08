@@ -11,15 +11,16 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = ./*.c
-OBJS = ./*.o
-HDR = ./fillit.h
+SRCS = ./fillitproject/srcs/*.c libft/*.c
+OBJS = ./fillitproject/srcs/*.o libft/*.o
+HDR = ./fillitproject/includes/fillit.h 
+LIBHDR = libft/libft.h
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 	
 $(NAME):
-	gcc $(SRCS) $(FLAGS) -I $(HDR)
+	gcc -o $(NAME) $(SRCS) $(FLAGS) -I $(HDR) -I $(LIBHDR) 
 
 clean: 
 	/bin/rm -f $(OBJS)

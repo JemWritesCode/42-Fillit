@@ -14,7 +14,6 @@
 # define FILLIT_H
 
 #include "../../libft/libft.h"
-#include <stdlib.h> //exit function,
 
 
 #endif
