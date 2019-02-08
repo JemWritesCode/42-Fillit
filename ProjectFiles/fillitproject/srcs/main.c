@@ -19,8 +19,8 @@ int		main(void)
 	//	ValidFile?
 	//else
 	//{
-		ft_putstr("Test");
-		//EXIT_FAILURE;
+		ft_putstr("usage: ./fillit source_file\n");
+		EXIT_FAILURE;
 	//}]
 	return (0);
 }
