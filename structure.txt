@@ -1,0 +1,47 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    structure.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cschulle <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/02/02 19:35:09 by cschulle          #+#    #+#              #
+#    Updated: 2019/02/03 00:09:17 by cschulle         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+---
+Brainstorming program structure
+---
+
+| VALIDITY CHECKER |
+
+- checks if given piece file is valid
+
+| FILE READER |
+
+- stores piece as 2-D array
+	- is blank array passed as argument?
+	- or is it malloc'd within this function?
+
+| PIECE PLACER |
+
+- 
+
+| RECURSIVE SOLVER |
+
+- 
+
+
+| MAIN |
+
+1. mallocs & initializes blank 2-D array
+	- start with overlarge size, cut down?
+2. calls FILE READER to get piece
+3. calls PIECE PLACER on blank map & first piece
+4. if 3 is valid, repeat steps 2 & 3 on 2nd piece, etc. until solved
+5. calls SOLUTION PRINTER to print out solution map
+
+| SOLUTION PRINTER |
+
+- prints out solved puzzle map & smallest square size
