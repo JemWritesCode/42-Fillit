@@ -55,3 +55,6 @@ dkms.conf
 .DS_Store
 ._.DS_Store
 ._*
+
+#SchoolJunk
+.nfs.*
