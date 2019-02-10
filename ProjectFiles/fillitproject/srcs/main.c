@@ -13,14 +13,15 @@
 #include "../includes/fillit.h"
 
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	//if(params is 1)
-	//	ValidFile?
-	//else
-	//{
+	if (argc == 2)
+		if(valid_file())
+			//solve
+	else
+	{
 		ft_putstr("usage: ./fillit source_file\n");
 		EXIT_FAILURE;
-	//}]
+	}
 	return (0);
 }

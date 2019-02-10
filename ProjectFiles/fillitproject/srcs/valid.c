@@ -17,3 +17,7 @@
 	- Count Method (6 touching sides per piece / 8 in the square)
 */
 
+int		valid_file()
+{
+
+}
