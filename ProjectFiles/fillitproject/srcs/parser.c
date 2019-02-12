@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/07 21:25:40 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/08 23:32:00 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "../../libft/libft.h"
 
 /*
 **	WHAT THIS DOES
@@ -26,26 +27,46 @@
 **	- returns string containing file contents
 */
 
+int		charcount(int i, char buf[])
+{
+	int j;
+	int count;
+
+	j = 0;
+	count = 0;
+	while (j < i)
+	{
+		if (buf[j] == '.' || buf[j] == '#')
+			count++;
+		j++;
+	}
+	return (count);
+}
+
 char	*parser(char *filename)
 {
 	char	*filecontents;
-	char	buf[167];
+	char	buf[544];
 	int		fd;
-	int		i[2];
+	int		i;
 	int		filesize;
 
-	i[0] = 0;
-	i[1] = -1;
 	fd = open(filename, O_RDONLY);
-	filesize = read(fd, buf, 167);
-	filecontents = malloc((size_t)filesize - (filesize % 16)); 		// be sure to free after use in calling function!
-	while (i[0] < filesize)
+	i = read(fd, buf, 544);
+	filesize = charcount(i, buf);
+	if (!(filecontents = malloc((size_t)filesize + 1)))		// be sure to free after use in calling function!
+		return (NULL);
+	filecontents[filesize] = '\0';
+	filesize--;
+	while (filesize >= 0)
 	{
-		if (buf[i[0]] == '.' || buf[i[0]] == '#')
-			filecontents[++(i[1])] = buf[i[0]];
-		(i[0])++;
+		if (buf[i] == '.' || buf[i] == '#')
+		{
+			filecontents[filesize] = buf[i];
+			filesize--;
+		}
+		i--;
 	}
-	filecontents[(i[1]) + 2] = '\0';
 	close(fd);
 	return (filecontents);
 }
