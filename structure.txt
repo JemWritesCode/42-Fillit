@@ -6,42 +6,89 @@
 #    By: cschulle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/02 19:35:09 by cschulle          #+#    #+#              #
-#    Updated: 2019/02/03 00:09:17 by cschulle         ###   ########.fr        #
+#    Updated: 2019/02/11 22:50:36 by cschulle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
----
-Brainstorming program structure
----
+---					 ---
+FILLIT PROGRAM STRUCTURE
+---					 ---
 
-| VALIDITY CHECKER |
+• MAIN()
+	Starting input point for the program.
+	Opens the file to get fd.
+	Calls parser() to return list of pieces (& determine if valid file).
+	Calls solver() to solve puzzle.
+	Calls map_printer() to print solved puzzle.
+	Calls free_map() to free map.
+	Calls free_pieces() to free piece list.
 
-- checks if given piece file is valid
+	Input:	arguments from stdin
+	Output:	-
 
-| FILE READER |
+	• PARSER()
+		Reads through file and returns a list of separated pieces.
+		Uses size limits and calls  valid_checker() as it reads to check if valid file.
+		Returns error if invalid file.
+			
+		Input:	fd (file descriptor)
+		Output:	t_list pointer to head of piece list
 
-- stores piece as 2-D array
-	- is blank array passed as argument?
-	- or is it malloc'd within this function?
+		• VALID_CHECKER()
+			Checks if the file is valid.
+			A file is invalid if:
+				- Fewer than 21 bytes
+				- Piece chunk does not contain 4 '#' characters
+				- adjacency_counter() return isn't 6 or 8
+				- Lines are more than 4 chars long (excluding '\n')
+				- Piece blocks are more than 4 lines long
+				- Contains chars other than '.', '#', and '\n'
+				- Contains invalid pieces
+				- Greater than 544 bytes
 
-| PIECE PLACER |
+				• ADJACENCY_COUNTER()
+					Checks if piece has a valid number of adjacencies.
+					Valid tetrominos will contain either 6 or 8 (8 if little square) adjacencies.
+		
+	• SOLVER()
+		Calls mapper() to create a blank map.
+		Calls fitter() in a loop to start recursive backtracking implementation.
+		While fitter() fails, increments size of blank map.
+		Returns solved mapp when fitter() succeeds.
 
-- 
+		Input: piece list head (t_list pointer)
+		Output: solved map as a 2-D array
 
-| RECURSIVE SOLVER |
+		• FITTER()
+			>> RECURSIVE BACKTRACKING TIME! <<
+			While the piece doesn't hit either edge, call placer() to add the piece to the map.
+			If placer() is unsuccessful, move piece 1 space forward within map.
+			If placer() is successful, call fitter() on the next piece
+			If placer() is unusscessful for ALL placements of next piece, backtrack to previous piece, & move 1 space forward.
+			Repeat until valid map is found.
+			Return solved map.
 
-- 
+			• PLACER()
+				 Checks if current position of piece is valid (no intersections with other pieces).
+				 If not, return (0).
+				 If yes, places piece, calls letterer() to replace '#' characters with letter corresponding to piece number.
+					-- keep track of how many pieces, as letterer() must fill with a different letter for each!
 
+				 Input: Tetris piece struct pointer, map pointer, x coordinate, y coordinate.
+				 Output: Integer (success or failure flag)
 
-| MAIN |
+				• LETTERER()
+					Replaces given tetromino's '#' characters with the given letter.
 
-1. mallocs & initializes blank 2-D array
-	- start with overlarge size, cut down?
-2. calls FILE READER to get piece
-3. calls PIECE PLACER on blank map & first piece
-4. if 3 is valid, repeat steps 2 & 3 on 2nd piece, etc. until solved
-5. calls SOLUTION PRINTER to print out solution map
+					Input: Tetris piece struct pointer, character
+					Output: Tetris piece struct pointer
 
-| SOLUTION PRINTER |
+• MAP_PRINTER()
+	Prints solved map.
 
-- prints out solved puzzle map & smallest square size
+• FREE_MAP()
+	Frees malloc'd 2D map array.
+
+• FREE_PIECES()
+	Frees malloc'd list of pieces.
+
