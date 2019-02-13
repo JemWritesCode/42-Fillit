@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/08 23:32:00 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/12 21:04:08 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,42 @@ int		charcount(int i, char buf[])
 	return (count);
 }
 
-char	*parser(char *filename)
+t_piece		*piecemaker(char* start, char* end)
 {
-	char	*filecontents;
-	char	buf[544];
+	t_piece *newpiece;
+	int		i;
+
+	while (start != end)
+	{
+		if (start[0] == '\n')
+			start++;
+	// make the data go into the thing		
+		start++;
+	}
+	return (newpiece);
+}
+
+t_piece		*parser(char *filename)
+{
+	t_piece	*piecelist;
+	char	buf[545]; // problem that this is uninitialized?
 	int		fd;
 	int		i;
 	int		filesize;
 
 	fd = open(filename, O_RDONLY);
-	i = read(fd, buf, 544);
+	i = read(fd, buf, 545);
+	if (i > 544 || i < 21)
+		return (NULL);
+	buf[i] = '\0';
+	while (buf[i])
+	{	
+		//point the head of the thing at the head of the thing
+		piecelist = piecemaker(buf[i], buf[i+21]);
+		i = i+21;
+	}
+
+/*
 	filesize = charcount(i, buf);
 	if (!(filecontents = malloc((size_t)filesize + 1)))		// be sure to free after use in calling function!
 		return (NULL);
@@ -67,6 +93,6 @@ char	*parser(char *filename)
 		}
 		i--;
 	}
-	close(fd);
-	return (filecontents);
+*/	close(fd);
+	return (piecelist);
 }

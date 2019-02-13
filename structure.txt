@@ -6,7 +6,7 @@
 #    By: cschulle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/02 19:35:09 by cschulle          #+#    #+#              #
-#    Updated: 2019/02/11 22:50:36 by cschulle         ###   ########.fr        #
+#    Updated: 2019/02/12 18:09:30 by cschulle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ FILLIT PROGRAM STRUCTURE
 
 • MAIN()
 	Starting input point for the program.
-	Opens the file to get fd.
 	Calls parser() to return list of pieces (& determine if valid file).
 	Calls solver() to solve puzzle.
 	Calls map_printer() to print solved puzzle.
@@ -27,28 +26,37 @@ FILLIT PROGRAM STRUCTURE
 	Output:	-
 
 	• PARSER()
-		Reads through file and returns a list of separated pieces.
-		Uses size limits and calls  valid_checker() as it reads to check if valid file.
+		Calls open() on filestring to get an fd.
+		Calls piecemaker() in a loop to read through file and return pieces.
+		Appends each new piece to the piece list.
+		Closes fd.
 		Returns error if invalid file.
 			
-		Input:	fd (file descriptor)
+		Input:	filename as a string
 		Output:	t_list pointer to head of piece list
 
-		• VALID_CHECKER()
-			Checks if the file is valid.
-			A file is invalid if:
-				- Fewer than 21 bytes
-				- Piece chunk does not contain 4 '#' characters
-				- adjacency_counter() return isn't 6 or 8
-				- Lines are more than 4 chars long (excluding '\n')
-				- Piece blocks are more than 4 lines long
-				- Contains chars other than '.', '#', and '\n'
-				- Contains invalid pieces
-				- Greater than 544 bytes
+		• PIECEMAKER()
+			Reads through a given section of the buffer to create a t_piece struct.
+			Uses size limits and calls valid_checker() as it reads to check if valid file.
 
-				• ADJACENCY_COUNTER()
-					Checks if piece has a valid number of adjacencies.
-					Valid tetrominos will contain either 6 or 8 (8 if little square) adjacencies.
+			Input:	char * beginning of piece, char * end of piece
+			Output:	t_piece pointer to new piece
+
+			• VALID_CHECKER()
+				Checks if the file is valid.
+				A file is invalid if ([x] indicates already checked in parser):
+					[x] Fewer than 21 bytes
+					- 	Piece chunk does not contain 4 '#' characters
+					- 	adjacency_counter() return isn't 6 or 8
+					- 	Lines are more than 4 chars long (excluding '\n')
+					- 	Piece blocks are more than 4 lines long
+					- 	Contains chars other than '.', '#', and '\n'
+					- 	Contains invalid pieces
+					[x] Greater than 544 bytes
+
+					• ADJACENCY_COUNTER()
+						Checks if piece has a valid number of adjacencies.
+						Valid tetrominos will contain either 6 or 8 (8 if little square) adjacencies.
 		
 	• SOLVER()
 		Calls mapper() to create a blank map.
