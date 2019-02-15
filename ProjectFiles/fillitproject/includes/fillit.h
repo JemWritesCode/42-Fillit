@@ -25,4 +25,10 @@ typedef struct	s_piece
 	char		pieceletter;
 }				t_piece;
 
+typedef struct	s_map
+{
+	int			size;
+	char		**array;
+}				t_map;
+
 #endif

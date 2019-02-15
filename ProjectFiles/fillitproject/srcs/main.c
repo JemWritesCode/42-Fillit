@@ -15,13 +15,22 @@
 
 int		main(int argc, char **argv)
 {
-	if (argc == 2)
-		if(valid_file())
-			//solve
-	else
+	t_piece	*piecelist;
+	t_map	*map;
+
+	if (argc != 2)
 	{
 		ft_putstr("usage: ./fillit source_file\n");
 		EXIT_FAILURE;
 	}
+	if(piecelist = parser(argv[1]) == NULL)
+	{
+		ft_putstr("error\n");
+		EXIT_FAILURE;		
+	}
+	map = solve(piecelist);
+	print_map(map);
+	free_map(map);
+	free_list(piecelist);
 	return (0);
 }
