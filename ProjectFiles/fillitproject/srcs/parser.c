@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/12 21:04:08 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/15 13:01:33 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,71 @@
 **	- returns string containing file contents
 */
 
-int		charcount(int i, char buf[])
+int		charcount(char* buf)
 {
-	int j;
+	int i;
 	int count;
 
-	j = 0;
 	count = 0;
-	while (j < i)
+	i = 0;
+	if(buf[20] != '\n') // checks block length
+		return(0);
+	while(i < 21)
 	{
-		if (buf[j] == '.' || buf[j] == '#')
+		if(buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
+			return(0);
+		if(buf[i] == '\n' && !(i == 20 || ((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
+			return(0);
+		if(buf[i] == '#')
 			count++;
-		j++;
+		i++;
 	}
-	return (count);
+	return(count); // returns number of '#' characters containted in string
 }
 
-t_piece		*piecemaker(char* start, char* end)
+int		adjacency_counter(char* buf)
+{
+	if (charcount(buf) != 4)
+		return (0);
+	while(i < 21)
+	{
+		if(buf[i] == '#')
+		{
+			if(i + 1 <= 18 && buf[i + 1] == '#')
+				count++;
+			if(i - 1 >= 0 && buf[i - 1] == '#')
+				count++;
+			if(i + 5 <= 18 && buf[i + 5] == '#')
+				count++;
+			if(i - 5 >= 0 && buf[i - 5] == '#')
+				count++;
+		}
+		i++;
+	}
+	return(count);
+}
+
+int		*dimensions(char* buf)
+{
+
+	return(dim);
+}
+
+t_piece		*piecemaker(char* buf)
 {
 	t_piece *newpiece;
 	int		i;
+	int		x;
+	int		y;
 
-	while (start != end)
+	while(i < 21)
 	{
-		if (start[0] == '\n')
-			start++;
-	// make the data go into the thing		
-		start++;
+		if (
+		if (buf[i] != '#')
+			i++;
+		else (buf[i] == '#')
+			hash++;
+		i++;
 	}
 	return (newpiece);
 }
@@ -74,7 +112,8 @@ t_piece		*parser(char *filename)
 	while (buf[i])
 	{	
 		//point the head of the thing at the head of the thing
-		piecelist = piecemaker(buf[i], buf[i+21]);
+		if(!(piecelist = piecemaker(buf[i])))
+			return(NULL);
 		i = i+21;
 	}
 
