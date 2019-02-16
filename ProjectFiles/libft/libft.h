@@ -24,6 +24,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+size_t	ft_lstcount(t_list *list);
 size_t			ft_wlen(const char *str, char c);
 size_t			ft_wc(char *str, char c);
 int				ft_count_non_spaces(char *str);
