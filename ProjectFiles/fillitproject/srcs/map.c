@@ -1,36 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 17:26:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/06 17:26:48 by jcope            ###   ########.fr       */
+/*   Created: 2019/02/17 19:12:48 by jcope             #+#    #+#             */
+/*   Updated: 2019/02/17 19:12:49 by jcope            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-
-
-int		main(int argc, char **argv)
+size_t	count_pieces(t_piece *piecelist)
 {
-	t_piece	*piecelist;
-	t_map	*map;
+	size_t	count;
 
-	if (argc != 2)
+	count = 0;
+	while(piecelist != NULL)
 	{
-		ft_putstr("usage: ./fillit source_file\n");
-		EXIT_FAILURE;
+		piecelist = piecelist->next;
+		count++;
 	}
-	if(piecelist = parser(argv[1]) == NULL)
-	{
-		ft_putstr("error\n");
-		EXIT_FAILURE;		
-	}
-	map = solve(piecelist);
-	//free_map(map);
-	//free_list(piecelist);
-	return (0);
+	return(count);
 }
+
+/*
+* Print the map one row at a time followed by newline.
+*/
+void	print_map(t_map *map, int size)
+{	
+	int i;
+
+	i = 0;
+	while(i < size)
+	{
+		ft_putstr(map->array[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
+//void	free_map(t_map *map)
+//{	
+//}
+
+//void	free_list(t_piece *piecelist)
+//{	
+//}

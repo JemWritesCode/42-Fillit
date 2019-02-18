@@ -12,16 +12,17 @@
 
 #include "../includes/fillit.h"
 
-int		solve_map(t_map *map, t_list *list, int size)
-{
-
-}
+//int		solve_map(t_map *map, t_list *list, int size)
+//{
+//
+//}
 
 t_map	*new_map(int size)
 {
 	t_map *map;
+	int i;
 
-	map = (*t_map)ft_memalloc(sizeof(t_map)); //malloc a map the size of map struct.
+	map = (t_map *)ft_memalloc(sizeof(t_map)); //malloc a map the size of map struct.
 
 	// size of map * char pointer. 
 	//Turn this into ** so it's basically like the first column of the map.
@@ -31,13 +32,7 @@ t_map	*new_map(int size)
 	while (i < size)
 	{
 		map->array[i] = ft_strnew(size); 
-		j = 0
-		while(j < size)
-		{
-			// fill in the row's columns with . but not the last char (newline)
-			map->array[i][j] = '.';
-			j++;
-		}
+		ft_memset(&map->array[i], '.', size); // fill in each row with .
 		i++; // go to the next row. 
 	}
 	return (map);
@@ -55,7 +50,7 @@ int		round_up_sq_rt(int num)
 	int	size;
 
 	size = 2;
-	while (size * size < n)
+	while (size * size < num)
 		size++;
 	return(size);
 }
@@ -69,8 +64,9 @@ t_map	*solve(t_piece *piecelist)
 	t_map	*map;
 	int		size;
 
-	size = round_up_sq_rt(ft_lstcount(piecelist) * 4);
+	size = round_up_sq_rt(count_pieces(piecelist) * 4);
 	map = new_map(size);
-	solve_map(map, piecelist, size);
-	print_map(map);
+	//solve_map(map, piecelist, size);
+	//print_map(map, size);
+	return(map);
 }
