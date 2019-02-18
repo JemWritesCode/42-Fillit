@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/15 13:01:33 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/17 22:28:03 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,54 +27,24 @@
 **	- returns string containing file contents
 */
 
-int		charcount(char* buf)
+int		**piecemapper(char* buf)
 {
+	int **piecemap;
 	int i;
-	int count;
-
-	count = 0;
+	int point;
 	i = 0;
-	if(buf[20] != '\n') // checks block length
-		return(0);
-	while(i < 21)
-	{
-		if(buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
-			return(0);
-		if(buf[i] == '\n' && !(i == 20 || ((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
-			return(0);
-		if(buf[i] == '#')
-			count++;
-		i++;
-	}
-	return(count); // returns number of '#' characters containted in string
-}
-
-int		adjacency_counter(char* buf)
-{
-	if (charcount(buf) != 4)
-		return (0);
-	while(i < 21)
+	point = 0;
+	while(i < 20)
 	{
 		if(buf[i] == '#')
 		{
-			if(i + 1 <= 18 && buf[i + 1] == '#')
-				count++;
-			if(i - 1 >= 0 && buf[i - 1] == '#')
-				count++;
-			if(i + 5 <= 18 && buf[i + 5] == '#')
-				count++;
-			if(i - 5 >= 0 && buf[i - 5] == '#')
-				count++;
+			piecemap[point][0] = ; //math
+			piecemap[point][1] = ; //math
+			point++;
 		}
 		i++;
 	}
-	return(count);
-}
-
-int		*dimensions(char* buf)
-{
-
-	return(dim);
+	return(piecemap);
 }
 
 t_piece		*piecemaker(char* buf)
