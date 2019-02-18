@@ -28,7 +28,6 @@ typedef struct		s_piece
 
 typedef struct	s_map
 {
-	int			size;
 	char		**array;
 }				t_map;
 

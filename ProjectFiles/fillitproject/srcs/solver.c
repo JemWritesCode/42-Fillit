@@ -12,20 +12,42 @@
 
 #include "../includes/fillit.h"
 
+int		solve_map(t_map *map, t_list *list, int size)
+{
+
+}
+
 t_map	*new_map(int size)
 {
 	t_map *map;
 
 	map = (*t_map)ft_memalloc(sizeof(t_map)); //malloc a map the size of map struct.
-	map->size = size;
-	map->array = 
 
+	// size of map * char pointer. 
+	//Turn this into ** so it's basically like the first column of the map.
+	map->array = (char**)ft_memalloc(sizeof(char*) * size); 
+	//then you need to malloc out the rows of the map based on size as well, plus newline.
+	i = 0;
+	while (i < size)
+	{
+		map->array[i] = ft_strnew(size); 
+		j = 0
+		while(j < size)
+		{
+			// fill in the row's columns with . but not the last char (newline)
+			map->array[i][j] = '.';
+			j++;
+		}
+		i++; // go to the next row. 
+	}
+	return (map);
 }
 
 /*
 * Get the square root and round it up for starting map size.
 * Example: If the number of blocks in pieces would require a 2.3 x 2.3 grid
 * then it needs to round up to be 3x3 minimum to fit.
+* In that case this function would return 3.
 */
 
 int		round_up_sq_rt(int num)
@@ -39,7 +61,7 @@ int		round_up_sq_rt(int num)
 }
 
 /*
-* Start with the smallest map size for # of blocks in pieces.
+* Start with the smallest map size for number of blocks in pieces.
 */
 
 t_map	*solve(t_piece *piecelist)
@@ -49,5 +71,6 @@ t_map	*solve(t_piece *piecelist)
 
 	size = round_up_sq_rt(ft_lstcount(piecelist) * 4);
 	map = new_map(size);
-
+	solve_map(map, piecelist, size);
+	print_map(map);
 }

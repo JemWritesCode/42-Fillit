@@ -12,6 +12,13 @@
 
 #include "../includes/fillit.h"
 
+//void	free_map(t_map *map)
+//{	
+//}
+
+//void	free_list(t_piece *piecelist)
+//{	
+//}
 
 int		main(int argc, char **argv)
 {
@@ -29,7 +36,6 @@ int		main(int argc, char **argv)
 		EXIT_FAILURE;		
 	}
 	map = solve(piecelist);
-	print_map(map);
 	free_map(map);
 	free_list(piecelist);
 	return (0);
