@@ -32,7 +32,7 @@ t_map	*new_map(int size)
 	while (i < size)
 	{
 		map->array[i] = ft_strnew(size); 
-		ft_memset(&map->array[i], '.', size); // fill in each row with .
+		ft_memset(map->array[i], '.', size); // fill in each row with .
 		i++; // go to the next row. 
 	}
 	return (map);
