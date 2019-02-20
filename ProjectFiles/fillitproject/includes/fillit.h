@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/15 16:37:02 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/20 14:25:56 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 typedef struct		s_piece
 {
-	int				width;
-	int				height;
-	char			**piecemap;
+	int				blockcoords[8];
 	char			pieceletter;
 	struct s_piece	*next; // next has to be a pointer to the next structure in the linked list. 
 }					t_piece;
