@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 20:56:03 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/20 21:03:53 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:04:50 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	main(void)
 {
+	t_piece *listhead;
 	t_piece first;
 	t_piece second;
 	t_piece third;
 
+	listhead = first;
 	first->blockcoords = {0, 0, 0, 1, 0, 2, 0, 3};
 	first->pieceletter = A;
 	first->next = second;
