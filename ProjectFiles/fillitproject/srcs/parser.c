@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/20 16:44:32 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/20 19:42:11 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,77 +27,46 @@
 **	- returns string containing file contents
 */
 
-void	shift_x(int coords[8], int n)
+void	align(t_piece piece)
 {
-	coords[0] += n;
-	coords[2] += n;
-	coords[4] += n;
-	coords[6] += n;
+	while (piece->blockcoords[0] != 0 && \
+			piece->blockcoords[2] != 0 && \
+			piece->blockcoords[4] != 0 && \
+			piece->blockcoords[6] != 0)
+		shift_x(piece, -1);
+	while (piece->blockcoords[1] != 0 && \
+			piece->blockcoords[3] != 0 && \
+			piece->blockcoords[5] != 0 && \
+			piece->blockcoords[7] != 0)
+		shift_y(piece, -1);
 }
 
-
-void	shift_y(int coords[8], int n)
+t_piece		piecemaker(char* buf)
 {
-	coords[1] += n;
-	coords[3] += n;
-	coords[5] += n;
-	coords[7] += n;
-}
-
-char	*findcorner(char* buf)
-{
-	int		i;
-	char	*corner;
-
-	i = 0;
-	while (buf[i] == '.' || buf[i] == '\n')
-		i++;
-	while (buf[i + 4] == '#' || buf
-	corner = buf + i;
-	return (corner);
-}
-
-int		**piecemapper(char* buf)
-{
-	int **piecemap;
-	int i;
-	int point;
-	i = 0;
-	point = 0;
-	while(i < 20)
-	{
-		if(buf[i] == '#')
-		{
-			piecemap[point][0] = ; //math
-			piecemap[point][1] = ; //math
-			point++;
-		}
-		i++;
-	}
-	return(piecemap);
-}
-
-t_piece		*piecemaker(char* buf)
-{
-	t_piece *newpiece;
+	t_piece newpiece;
 	int	x;
 	int y;
 	int i;
+	static char pieceletter;
 
 	i = 0;
 	x = 0;
 	y = 1;
+	pieceletter = 'A';
 	while(i < 21)
 	{
 		if(buf[i] == '#')
 		{
-
+			newpiece->blockcoords[x] = (i > 5) ? (i % 5) : i;
+			newpiece->blockcoords[y] = i / 5;
 			x += 2;
 			y += 2;
 		}
-	
 		i++;
 	}
+	newpiece->pieceletter = pieceletter;
+	pieceletter++;
+	align(newpiece);
 	return (newpiece);
 }
 
@@ -121,22 +90,4 @@ t_piece		*parser(char *filename)
 			return(NULL);
 		i = i+21;
 	}
-
-/*
-	filesize = charcount(i, buf);
-	if (!(filecontents = malloc((size_t)filesize + 1)))		// be sure to free after use in calling function!
-		return (NULL);
-	filecontents[filesize] = '\0';
-	filesize--;
-	while (filesize >= 0)
-	{
-		if (buf[i] == '.' || buf[i] == '#')
-		{
-			filecontents[filesize] = buf[i];
-			filesize--;
-		}
-		i--;
-	}
-*/	close(fd);
-	return (piecelist);
 }

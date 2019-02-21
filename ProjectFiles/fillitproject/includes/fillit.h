@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/20 14:25:56 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/20 19:39:15 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	print_map(t_map *map, int size);
 int		round_up_sq_rt(int num);
 t_map	*new_map(int size);
 t_map	*solve(t_piece *piecelist);
-char	*parser(char *filename);
+t_piece	*parser(char *filename);
+void	shift_x(t_piece piece, int n);
+void	shift_y(t_piece piece, int y);
 
 #endif
