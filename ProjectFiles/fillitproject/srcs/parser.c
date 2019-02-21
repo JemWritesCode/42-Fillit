@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/17 22:28:03 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:44:32 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,36 @@
 **	- closes file
 **	- returns string containing file contents
 */
+
+void	shift_x(int coords[8], int n)
+{
+	coords[0] += n;
+	coords[2] += n;
+	coords[4] += n;
+	coords[6] += n;
+}
+
+
+void	shift_y(int coords[8], int n)
+{
+	coords[1] += n;
+	coords[3] += n;
+	coords[5] += n;
+	coords[7] += n;
+}
+
+char	*findcorner(char* buf)
+{
+	int		i;
+	char	*corner;
+
+	i = 0;
+	while (buf[i] == '.' || buf[i] == '\n')
+		i++;
+	while (buf[i + 4] == '#' || buf
+	corner = buf + i;
+	return (corner);
+}
 
 int		**piecemapper(char* buf)
 {
@@ -50,17 +80,22 @@ int		**piecemapper(char* buf)
 t_piece		*piecemaker(char* buf)
 {
 	t_piece *newpiece;
-	int		i;
-	int		x;
-	int		y;
+	int	x;
+	int y;
+	int i;
 
+	i = 0;
+	x = 0;
+	y = 1;
 	while(i < 21)
 	{
-		if (
-		if (buf[i] != '#')
-			i++;
-		else (buf[i] == '#')
-			hash++;
+		if(buf[i] == '#')
+		{
+
+			x += 2;
+			y += 2;
+		}
+	
 		i++;
 	}
 	return (newpiece);
