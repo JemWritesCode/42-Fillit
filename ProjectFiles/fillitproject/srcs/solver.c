@@ -13,52 +13,76 @@
 #include "../includes/fillit.h"
 #include <stdio.h> // For Testing, remove this!
 
-void	place(t_map *map, int x, int y, char letter)
+int		check_overlap(t_map *map, t_piece *piece)
 {
-	map->array[x][y] = letter;
-}
-
-
-
-int		solve_map(t_map *map, t_piece *piecelist, int map_size)
-{
+	int	avail;
 	int x;
 	int y;
+	
 
 	x = 0;
 	y = 1;
 
-	if (map->array[piecelist->blockcoords[x]][piecelist->blockcoords[y]] == '.')
+
+	avail = 0;
+	while(avail < 4) // check each coord to see if it's avail on map. 
+	if (map->array[piece->blockcoords[x]][piece->blockcoords[y]] == '.')
+	{
 		printf("%s\n", "Space Avail");
-	
-	printf("Map Size:%d\n", map_size);
+		avail++;
+		x += 2;
+		y += 2;		
+	}
+		return (avail == 3);
+}
+
+void	place(t_piece *piece, t_map *map)
+{
+	int x;
+	int y;
 	
 
-	//to get to the next set of cords x += 2 / y += 2
-	return (0); //solved
+	x = 0;
+	y = 1;
+	while(x <= 6)
+	{
+		printf("x: %d, y: %d\n", piece->blockcoords[x], piece->blockcoords[y]);
+		map->array[piece->blockcoords[x]][piece->blockcoords[y]] = piece->pieceletter;
+		x += 2;
+		y += 2;		
+	}
+	printf("\n");
+
 }
 
 
 
-t_map	*new_map(int map_size)
+int		solve_map(t_map *map, t_piece *piece, int map_size)
 {
-	t_map *map;
-	int i;
 
-	map = (t_map *)ft_memalloc(sizeof(t_map)); //malloc a map the map_size of map struct.
 
-	// map_size of map * char pointer. 
-	//Turn this into ** so it's basically like the first column of the map.
-	map->array = (char**)ft_memalloc(sizeof(char*) * map_size); 
-	//then you need to malloc out the rows of the map based on map_size as well, plus newline.
-	i = 0;
-	while (i < map_size)
-	{
-		map->array[i] = ft_strnew(map_size); 
-		ft_memset(map->array[i], '.', map_size); // fill in each row with .
-		i++; // go to the next row. 
+	printf("Map Size:%d\n", map_size);
+	printf("Overlap?:%d\n", check_overlap(map, piece));
+	if (!check_overlap(map, piece)){
+		place(piece, map);
 	}
-	return (map);
+
+	piece = piece->next;
+	place(piece, map);
+
+	//while(piece){
+	//	
+	//	printf("Overlap?:%d\n", check_overlap(map, piece));
+	//	if (!check_overlap(map, piece)){
+	//		place(piece, map);
+	//	}		
+	//}
+
+	
+	
+
+	//to get to the next set of cords x += 2 / y += 2
+	return (0); //solved
 }
 
 /*
@@ -90,7 +114,7 @@ t_map	*solve(t_piece *piecelist)
 	map_size = round_up_sq_rt(count_pieces(piecelist) * 4);
 	map = new_map(map_size);
 
-	//solve_map(map, piecelist, map_size);
+	solve_map(map, piecelist, map_size);
 	//print_map(map, map_size);
 	return(map);
 }
