@@ -6,13 +6,15 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/21 13:51:21 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/21 21:10:08 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
+#include <unistd.h>
+#include <fcntl.h>
 #include "../../libft/libft.h"
 
 typedef struct		s_piece
@@ -36,7 +38,7 @@ int		round_up_sq_rt(int num);
 t_map	*new_map(int size);
 t_map	*solve(t_piece *piecelist);
 t_piece	*parser(char *filename);
-void	shift_x(t_piece piece, int n);
-void	shift_y(t_piece piece, int y);
-
+void	shift_x(t_piece *piece, int n);
+void	shift_y(t_piece *piece, int y);
+int		valid(char *buf);
 #endif
