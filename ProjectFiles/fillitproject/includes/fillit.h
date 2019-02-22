@@ -40,5 +40,6 @@ t_map			*solve(t_piece *piecelist);
 t_piece			*parser(char *filename);
 void			shift_x(t_piece *piece, int n);
 void			shift_y(t_piece *piece, int y);
+int				valid(char *buf);
 
 #endif
