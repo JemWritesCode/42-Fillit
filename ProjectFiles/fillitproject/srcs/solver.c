@@ -26,7 +26,7 @@ int		check_overlap(t_map *map, t_piece *piece)
 
 	avail = 0;
 	while(avail < 4) // check each coord to see if it's avail on map. 
-	if (map->array[piece->blockcoords[x]][piece->blockcoords[y]] == '.')
+	if (map->array[piece->blockcoords[y]][piece->blockcoords[x]] == '.')
 	{
 		printf("%s\n", "Space Avail");
 		avail++;
@@ -47,7 +47,7 @@ void	place(t_piece *piece, t_map *map)
 	while(x <= 6)
 	{
 		printf("x: %d, y: %d\n", piece->blockcoords[x], piece->blockcoords[y]);
-		map->array[piece->blockcoords[x]][piece->blockcoords[y]] = piece->pieceletter;
+		map->array[piece->blockcoords[y]][piece->blockcoords[x]] = piece->pieceletter;
 		x += 2;
 		y += 2;		
 	}
