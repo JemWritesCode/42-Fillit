@@ -7,6 +7,6 @@
 
 int	main(void)
 {
-	parser("../TestFiles/valid1");
-
+	t_piece	*test = parser("./TestFiles/valid_1");
+	
 }
