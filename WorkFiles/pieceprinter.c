@@ -50,7 +50,7 @@ t_piece *printpiecelist(t_piece *piecelist)
 	printpiece(piecelist);
 	return (listhead);
 }
-
+/*
 int		main(void)
 {
 	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', NULL};
@@ -62,4 +62,4 @@ int		main(void)
 
 	printpiecelist(listhead);
 	return (0);
-}
+}*/
