@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:08:25 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/21 17:15:37 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:28:12 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../../libft/libft.h"
+#include "../includes/fillit.h"
 
 /*
 **	WHAT THIS DOES
@@ -27,7 +28,7 @@
 **	- returns string containing file contents
 */
 
-void	align(t_piece piece)
+void	align(t_piece *piece)
 {
 	while (piece->blockcoords[0] != 0 && \
 			piece->blockcoords[2] != 0 && \
@@ -41,9 +42,10 @@ void	align(t_piece piece)
 		shift_y(piece, -1);
 }
 
-t_piece		makepiece(char* buf, char pieceletter)
+t_piece		*makepiece(char* buf, char pieceletter)
 {
 	t_piece newpiece;
+	t_piece	*piece_ptr;
 	int	x;
 	int y;
 	int i;
@@ -63,8 +65,9 @@ t_piece		makepiece(char* buf, char pieceletter)
 		i++;
 	}
 	newpiece.pieceletter = pieceletter;
-	//align(newpiece);
-	return (newpiece);
+	piece_ptr = &newpiece;
+	//align(piece_ptr);
+	return (piece_ptr);
 }
 
 t_piece		*makelist(char *buf) // too many lines -- may be best to edit validity checker to work on entire file instead of chunks, to be called in parser -- would save 5 lines
@@ -101,6 +104,7 @@ t_piece		*makelist(char *buf) // too many lines -- may be best to edit validity 
 
 t_piece		*parser(char *filename)
 {
+	t_piece *TEST = NULL;
 	char	buf[545];
 	int		fd;
 	int		bytecount;
@@ -110,5 +114,6 @@ t_piece		*parser(char *filename)
 	if (bytecount > 544 || bytecount < 21)
 		return (NULL);
 	buf[bytecount] = '\0';
-	return (makelist(buf));
+	printf("\e[38;5;69m%s\e[0m", buf);
+	return (TEST);
 }

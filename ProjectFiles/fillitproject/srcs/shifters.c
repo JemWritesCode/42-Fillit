@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:39:43 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/21 13:50:31 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:19:46 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Shifts a piece 'n' places along the x-axis
 */
 
-void	shift_x(t_piece piece, int n)
+void	shift_x(t_piece *piece, int n)
 {
 	piece->blockcoords[0] += n;
 	piece->blockcoords[2] += n;
@@ -28,7 +28,7 @@ void	shift_x(t_piece piece, int n)
 **	Shifts a piece 'n' places along the y-axis
 */
 
-void	shift_y(t_piece piece, int n)
+void	shift_y(t_piece *piece, int n)
 {
 	piece->blockcoords[1] += n;
 	piece->blockcoords[3] += n;
