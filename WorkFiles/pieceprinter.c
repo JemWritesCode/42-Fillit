@@ -31,7 +31,7 @@ void	printpiece(t_piece *piece)
 		piecemap[piece->blockcoords[i + 1]][piece->blockcoords[i]] = piece->pieceletter;
 		i += 2;
 	}
-	printf("\n%s\n%s\n%s\n%s\n\n", piecemap[0], piecemap[1], piecemap[2], piecemap[3]);
+	printf(" %s\n %s\n %s\n %s\n\n", piecemap[0], piecemap[1], piecemap[2], piecemap[3]);
 }
 
 t_piece *printpiecelist(t_piece *piecelist)
@@ -40,12 +40,12 @@ t_piece *printpiecelist(t_piece *piecelist)
 	
 	while (piecelist->next)
 	{
-		printf("piece %c\n", piecelist->pieceletter);
+		printf("Piece %c\n", piecelist->pieceletter);
 		printcoords(piecelist);
 		printpiece(piecelist);
 		piecelist = piecelist->next;
 	}
-	printf("piece %c\n", piecelist->pieceletter);
+	printf("Piece %c\n", piecelist->pieceletter);
 	printcoords(piecelist);
 	printpiece(piecelist);
 	return (listhead);
