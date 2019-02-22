@@ -22,18 +22,19 @@ int		check_overlap(t_map *map, t_piece *piece)
 
 	x = 0;
 	y = 1;
-
-
 	avail = 0;
-	while(avail < 4) // check each coord to see if it's avail on map. 
-	if (map->array[piece->blockcoords[y]][piece->blockcoords[x]] == '.')
+	
+	while(x <= 6 && map->array[piece->blockcoords[y]][piece->blockcoords[x]] == '.')
 	{
+		printf("x: %d, y: %d\n", piece->blockcoords[x], piece->blockcoords[y]);
 		printf("%s\n", "Space Avail");
 		avail++;
 		x += 2;
-		y += 2;		
+		y += 2;
+
 	}
-		return (avail == 3);
+	printf("avail: %d\n", avail);
+	return (avail == 4);
 }
 
 void	place(t_piece *piece, t_map *map)
@@ -46,7 +47,7 @@ void	place(t_piece *piece, t_map *map)
 	y = 1;
 	while(x <= 6)
 	{
-		printf("x: %d, y: %d\n", piece->blockcoords[x], piece->blockcoords[y]);
+		
 		map->array[piece->blockcoords[y]][piece->blockcoords[x]] = piece->pieceletter;
 		x += 2;
 		y += 2;		
@@ -62,26 +63,15 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 
 
 	printf("Map Size:%d\n", map_size);
-	printf("Overlap?:%d\n", check_overlap(map, piece));
-	if (!check_overlap(map, piece)){
-		place(piece, map);
+
+	while(piece)
+	{
+		if (check_overlap(map, piece))
+		{
+			place(piece, map);
+		}
+		piece = piece->next;
 	}
-
-	piece = piece->next;
-	place(piece, map);
-
-	//while(piece){
-	//	
-	//	printf("Overlap?:%d\n", check_overlap(map, piece));
-	//	if (!check_overlap(map, piece)){
-	//		place(piece, map);
-	//	}		
-	//}
-
-	
-	
-
-	//to get to the next set of cords x += 2 / y += 2
 	return (0); //solved
 }
 
