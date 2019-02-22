@@ -27,7 +27,9 @@ typedef struct	s_map
 	char		**array;
 }				t_map;
 
-void	place(t_map *map, int x, int y, char letter);
+int		check_overlap(t_map *map, t_piece	*piecelist);
+int		solve_map(t_map *map, t_piece *piecelist, int map_size);
+void	place(t_piece *piece, t_map *map);
 size_t	count_pieces(t_piece *piecelist);
 void	print_map(t_map *map, int size);
 int		round_up_sq_rt(int num);
