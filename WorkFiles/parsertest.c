@@ -10,8 +10,10 @@ void	printpiece(t_piece *piece);
 
 t_piece		*makepiece(char* buf, char pieceletter)
 {
-	t_piece newpiece;
 	t_piece	*piece_ptr;
+
+	piece_ptr = (t_piece*)malloc(sizeof(t_piece));
+
 	int	x;
 	int y;
 	int i;
@@ -26,9 +28,11 @@ t_piece		*makepiece(char* buf, char pieceletter)
 		{
 			printf("i value at %dth block: %d\n", test, i);
 			test++;	
-			newpiece.blockcoords[x] = (i > 5) ? (i % 5) : i;
-			newpiece.blockcoords[y] = i / 5;
+			printf("current i: %d \n", i);
+			piece_ptr->blockcoords[x] = (i > 5) ? (i % 5) : i;
+			piece_ptr->blockcoords[y] = i / 5;
 			printf("x: %d\ny: %d\n", x, y); 
+
 			x += 2;
 			y += 2;
 		}
@@ -39,12 +43,11 @@ t_piece		*makepiece(char* buf, char pieceletter)
 	printf("coords: ");
 	i = -1;
 	while (i < 7)
-		printf("%d, ", newpiece.blockcoords[++i]);
+		printf("%d, ", piece_ptr->blockcoords[++i]);
 	printf("\n");
 	//endtest
 	
-	newpiece.pieceletter = pieceletter;
-	piece_ptr = &newpiece;
+	piece_ptr->pieceletter = pieceletter;
 	//align(piece_ptr);
 	return (piece_ptr);
 }

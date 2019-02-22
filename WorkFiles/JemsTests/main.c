@@ -76,6 +76,8 @@ solve_map(map, listhead, map_size);
 printf("\nCURRENT SOLUTION MAP\n");
 print_map(map, map_size); 
 
+printpiecelist(listhead);
+
 // printcoords(&first);
 // printpiece(&first);
 // 
