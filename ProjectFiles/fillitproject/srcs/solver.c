@@ -13,7 +13,7 @@
 #include "../includes/fillit.h"
 #include <stdio.h> // For Testing, remove this!
 
-int		check_overlap(t_map *map, t_piece *piece)
+int		overlap(t_map *map, t_piece *piece)
 {
 	int	avail;
 	int x;
@@ -34,7 +34,7 @@ int		check_overlap(t_map *map, t_piece *piece)
 
 	}
 	printf("avail: %d\n", avail);
-	return (avail == 4);
+	return (avail != 4);
 }
 
 void	place(t_piece *piece, t_map *map)
@@ -56,19 +56,36 @@ void	place(t_piece *piece, t_map *map)
 
 }
 
-
-
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {
-
-
 	printf("Map Size:%d\n", map_size);
 
 	while(piece)
 	{
-		if (check_overlap(map, piece))
+		if (!overlap(map, piece))
 		{
 			place(piece, map);
+		}
+		else
+		{
+			// need to add boundary check here. 
+			// move the piece and try to solve.
+			while(piece->blockcoords[0] < map_size && piece->blockcoords[2] < map_size && 
+				piece->blockcoords[4] < map_size && piece->blockcoords[4] < map_size)
+			{
+				shift_x(piece, 1);
+				solve_map(map, piece, map_size);
+			}
+
+
+
+
+			// This works and puts the B to the right of the A for testing. now need to make the loop.
+			//shift_x(piece, 2);
+			//if (!overlap(map, piece))
+			//{
+			//	place(piece, map);
+			//}
 		}
 		piece = piece->next;
 	}

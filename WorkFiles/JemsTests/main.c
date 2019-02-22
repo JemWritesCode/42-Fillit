@@ -55,10 +55,10 @@ int 	main(void ){
 t_map *map;
 int map_size = 5;
 map = new_map(map_size);
-print_map(map, map_size); 
-
-printf("\n\n");
-print_map(map, 5); 
+// print_map(map, map_size); 
+// 
+// printf("\n\n");
+// print_map(map, 5); 
 
 // Fake pieces for testing.
 	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', NULL};

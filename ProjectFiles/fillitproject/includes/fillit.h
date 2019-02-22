@@ -22,23 +22,23 @@ typedef struct		s_piece
 	int				blockcoords[8];
 	char			pieceletter;
 	struct s_piece	*next; // next has to be a pointer to the next structure in the linked list. 
-}					t_piece;
+}				t_piece;
 
 typedef struct	s_map
 {
 	char		**array;
 }				t_map;
 
-int		check_overlap(t_map *map, t_piece	*piecelist);
-int		solve_map(t_map *map, t_piece *piecelist, int map_size);
-void	place(t_piece *piece, t_map *map);
-size_t	count_pieces(t_piece *piecelist);
-void	print_map(t_map *map, int size);
-int		round_up_sq_rt(int num);
-t_map	*new_map(int size);
-t_map	*solve(t_piece *piecelist);
-t_piece	*parser(char *filename);
-void	shift_x(t_piece *piece, int n);
-void	shift_y(t_piece *piece, int y);
-int		valid(char *buf);
+int				overlap(t_map *map, t_piece	*piecelist);
+int				solve_map(t_map *map, t_piece *piecelist, int map_size);
+void			place(t_piece *piece, t_map *map);
+size_t			count_pieces(t_piece *piecelist);
+void			print_map(t_map *map, int size);
+int				round_up_sq_rt(int num);
+t_map			*new_map(int size);
+t_map			*solve(t_piece *piecelist);
+t_piece			*parser(char *filename);
+void			shift_x(t_piece *piece, int n);
+void			shift_y(t_piece *piece, int y);
+
 #endif

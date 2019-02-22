@@ -3,10 +3,12 @@
 NAME = JemsTest
 SRCS = ../../ProjectFiles/libft/*.c \
 ../../ProjectFiles/fillitproject/srcs/solver.c \
-../../ProjectFiles/fillitproject/srcs/map.c
+../../ProjectFiles/fillitproject/srcs/map.c \
+../../ProjectFiles/fillitproject/srcs/shifters.c
 OBJS = ../../ProjectFiles/libft/*.o \
 ../../ProjectFiles/fillitproject/srcs/solver.o\
-../../ProjectFiles/fillitproject/srcs/map.o
+../../ProjectFiles/fillitproject/srcs/map.o \
+../../ProjectFiles/fillitproject/srcs/shifters.o
 HDR = ../../ProjectFiles/fillitproject/includes/fillit.h 
 LIBHDR = ../../ProjectFiles/libft/libft.h
 FLAGS = -Wall -Wextra -Werror
