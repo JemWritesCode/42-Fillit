@@ -61,21 +61,25 @@ map = new_map(map_size);
 // print_map(map, 5); 
 
 // Fake pieces for testing.
-	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', NULL};
-	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', NULL};
-	t_piece third = {{1, 0, 1, 1, 1, 2, 0, 2}, 'C', NULL};
+	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
+	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
+	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
+	//t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
 	first.next = &second;
 	second.next = &third;
+	//third.next = &fourth;
 	t_piece *listhead = &first;
 
 
 solve_map(map, listhead, map_size);
+
+printf("\nCURRENT SOLUTION MAP\n");
 print_map(map, map_size); 
 
- printcoords(&first);
- printpiece(&first);
- 
- printcoords(&second);
- printpiece(&second);
+// printcoords(&first);
+// printpiece(&first);
+// 
+// printcoords(&second);
+// printpiece(&second);
 
 }

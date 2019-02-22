@@ -13,7 +13,7 @@
 #include "../includes/fillit.h"
 #include <stdio.h> // For Testing, remove this!
 
-int		overlap(t_map *map, t_piece *piece)
+int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
 {
 	int	avail;
 	int x;
@@ -24,20 +24,22 @@ int		overlap(t_map *map, t_piece *piece)
 	y = 1;
 	avail = 0;
 	
-	while(x <= 6 && map->array[piece->blockcoords[y]][piece->blockcoords[x]] == '.')
+	printf("LETTER: %c\n", piece->pieceletter );
+	//printf("x: %d, y: %d\n", piece->blockcoords[y] + y_offset, piece->blockcoords[x] + x_offset);
+	while(x <= 6 && map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x]+ x_offset] == '.')
 	{
-		printf("x: %d, y: %d\n", piece->blockcoords[x], piece->blockcoords[y]);
-		printf("%s\n", "Space Avail");
+		
+		//printf("%s\n", "Space Avail");
 		avail++;
 		x += 2;
 		y += 2;
 
 	}
-	printf("avail: %d\n", avail);
+	//printf("avail: %d\n", avail);
 	return (avail != 4);
 }
 
-void	place(t_piece *piece, t_map *map)
+void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 {
 	int x;
 	int y;
@@ -48,7 +50,7 @@ void	place(t_piece *piece, t_map *map)
 	while(x <= 6)
 	{
 		
-		map->array[piece->blockcoords[y]][piece->blockcoords[x]] = piece->pieceletter;
+		map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x] + x_offset] = piece->pieceletter;
 		x += 2;
 		y += 2;		
 	}
@@ -57,26 +59,36 @@ void	place(t_piece *piece, t_map *map)
 }
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
-{
-	printf("Map Size:%d\n", map_size);
-
+{	
 	while(piece)
 	{
-		if (!overlap(map, piece))
+		if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 		{
-			place(piece, map);
+			place(piece, map, piece->x_offset, piece->y_offset);
+			print_map(map, map_size); //testing only
 		}
 		else
 		{
-			// need to add boundary check here. 
 			// move the piece and try to solve.
-			while(piece->blockcoords[0] < map_size && piece->blockcoords[2] < map_size && 
-				piece->blockcoords[4] < map_size && piece->blockcoords[4] < map_size)
+			if(piece->blockcoords[0] + piece->x_offset < map_size && piece->blockcoords[2] + piece->x_offset < map_size && 
+				piece->blockcoords[4] + piece->x_offset < map_size && piece->blockcoords[6] + piece->x_offset < map_size)
 			{
-				shift_x(piece, 1);
+				piece->x_offset++;
+				//if (!overlap(map, piece, x_offset, y_offset))
+				//{
+				//	place(piece, map, x_offset, y_offset);
+				//}
 				solve_map(map, piece, map_size);
 			}
 
+			//piece->blockcoords[1] + piece->y_offset < map_size && piece->blockcoords[3] + piece->y_offset < map_size && 
+			//	piece->blockcoords[5] + piece->y_offset < map_size && piece->blockcoords[7] + piece->y_offset < map_size
+
+			//if it can't place it there in the bounds then it needs to put it back to the far left and then move it down one 
+			//then start moving to the right again.
+
+			//need to also account for Sample 3 problem where I need to restart at the first piece and try moving that
+			// before I try increasing the map size. 
 
 
 
