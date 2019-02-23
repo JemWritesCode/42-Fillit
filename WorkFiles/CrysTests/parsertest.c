@@ -2,7 +2,7 @@
 **	Test function for the various elements of parser.c
 */
 
-#include "../ProjectFiles/fillitproject/includes/fillit.h"
+#include "../../ProjectFiles/fillitproject/includes/fillit.h"
 #include <stdio.h>
 
 t_piece *printpiecelist(t_piece *piecelist);
@@ -24,7 +24,6 @@ t_piece		*makepiece(char* buf, char pieceletter)
 	{
 		if(buf[i] == '#')
 		{
-			test++;	
 			piece_ptr->blockcoords[x] = (i > 5) ? (i % 5) : i;
 			piece_ptr->blockcoords[y] = i / 5;
 			x += 2;
@@ -48,23 +47,18 @@ t_piece		*makelist(char *buf) // too many lines -- may be best to edit validity 
 	pieceletter = 'A';
 	while (buf[i])
 	{
-		if (valid(buf + i))
+		if (pieceletter == 'A')
 		{
-			if (pieceletter == 'A')
-			{
-				beginning = makepiece(buf + i, pieceletter);
-				current = beginning;
-			}
-			else
-			{
-				current->next = makepiece(buf + i, pieceletter);
-				current = current->next;
-			}
-			pieceletter++;
+			beginning = makepiece(buf + i, pieceletter);
+			current = beginning;
 		}
 		else
-			return (NULL);
-		i = i + 21;
+		{
+			current->next = makepiece(buf + i, pieceletter);
+			current = current->next;
+		}
+		pieceletter++;
+		i = i+21;
 	}
 	return (beginning);
 }
@@ -80,24 +74,14 @@ t_piece		*parser(char *filename)
 	if (bytecount > 544 || bytecount < 20)
 		return (NULL);
 	buf[bytecount] = '\0';
+//	if(!valid(buf))		// re-work validitychecker to work with whole file instead of 21-char chunk
+//		return(NULL);
 	return (makelist(buf));
 }
 
 int	main(void)
 {
-	t_piece *listhead = makepiece("....\n.##.\n.##.\n....\n\n", 'A');
-
-	//test to print coords
-	printf("coords after running makepiece: ");
-	int i = -1;
-	while (i < 7)
-	{
-		printf("%d, ", listhead->blockcoords[i]);
-		i++;
-	}
-	printf(" %d\n", listhead->blockcoords[i]);
-	//endtest
-	
-	printpiece(listhead);
+	t_piece *listhead = parser("../TestFiles/26Pieces");
+	printpiecelist(listhead);
 	return (0);	
 }
