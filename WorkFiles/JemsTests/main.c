@@ -67,6 +67,7 @@ map = new_map(map_size);
 	//t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
 	first.next = &second;
 	second.next = &third;
+	third.next = NULL;
 	//third.next = &fourth;
 	t_piece *listhead = &first;
 
@@ -76,7 +77,7 @@ solve_map(map, listhead, map_size);
 printf("\nCURRENT SOLUTION MAP\n");
 print_map(map, map_size); 
 
-printpiecelist(listhead);
+// printpiecelist(listhead);
 
 // printcoords(&first);
 // printpiece(&first);

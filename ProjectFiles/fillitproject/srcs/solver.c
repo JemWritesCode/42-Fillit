@@ -34,7 +34,7 @@ int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
 		x += 2;
 		y += 2;
 
-	}
+	}       
 	//printf("avail: %d\n", avail);
 	return (avail != 4);
 }
@@ -58,28 +58,38 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 
 }
 
+// int		in_bounds(t_map *map, t_piece *piece, int map_size){
+// 	
+// }
+
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
-	while(piece)
-	{
-		if (!overlap(map, piece, piece->x_offset, piece->y_offset))
+		while(piece->blockcoords[0] + piece->x_offset < map_size && piece->blockcoords[2] + piece->x_offset < map_size && 
+			piece->blockcoords[4] + piece->x_offset < map_size && piece->blockcoords[6] + piece->x_offset < map_size)
 		{
-			place(piece, map, piece->x_offset, piece->y_offset);
-			print_map(map, map_size); //testing only
-		}
-		else
-		{
-			// move the piece and try to solve.
-			if(piece->blockcoords[0] + piece->x_offset < map_size && piece->blockcoords[2] + piece->x_offset < map_size && 
-				piece->blockcoords[4] + piece->x_offset < map_size && piece->blockcoords[6] + piece->x_offset < map_size)
+			printf("piece->piece->blockcoords[0] + piece->x_offset: %d\n", (piece->blockcoords[0] + piece->x_offset));
+			printf("piece->piece->blockcoords[1] + piece->y_offset: %d\n", (piece->blockcoords[1] + piece->y_offset));
+			printf("piece->piece->blockcoords[2] + piece->x_offset: %d\n", (piece->blockcoords[2] + piece->x_offset));
+			printf("piece->piece->blockcoords[3] + piece->y_offset: %d\n", (piece->blockcoords[3] + piece->y_offset));
+			printf("piece->piece->blockcoords[4] + piece->x_offset: %d\n", (piece->blockcoords[4] + piece->x_offset));
+			printf("piece->piece->blockcoords[5] + piece->y_offset: %d\n", (piece->blockcoords[5] + piece->y_offset));	
+			printf("piece->piece->blockcoords[6] + piece->x_offset: %d\n", (piece->blockcoords[6] + piece->x_offset));
+			printf("piece->piece->blockcoords[7] + piece->y_offset: %d\n", (piece->blockcoords[7] + piece->y_offset));		
+			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
+			{
+				place(piece, map, piece->x_offset, piece->y_offset);
+				print_map(map, map_size); //testing only
+				solve_map(map, piece->next, map_size);
+			}
+			else
 			{
 				piece->x_offset++;
-				//if (!overlap(map, piece, x_offset, y_offset))
-				//{
-				//	place(piece, map, x_offset, y_offset);
-				//}
-				solve_map(map, piece, map_size);
-			}
+			}			
+		}	
+
+			// move the piece and try to solve.
+			//this may be backwards. (nope)
+
 
 			//piece->blockcoords[1] + piece->y_offset < map_size && piece->blockcoords[3] + piece->y_offset < map_size && 
 			//	piece->blockcoords[5] + piece->y_offset < map_size && piece->blockcoords[7] + piece->y_offset < map_size
@@ -98,9 +108,6 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 			//{
 			//	place(piece, map);
 			//}
-		}
-		piece = piece->next;
-	}
 	return (0); //solved
 }
 
