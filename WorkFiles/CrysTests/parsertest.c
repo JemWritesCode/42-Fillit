@@ -36,7 +36,7 @@ t_piece		*makepiece(char* buf, char pieceletter)
 	return (piece_ptr);
 }
 
-t_piece		*makelist(char *buf) // too many lines -- may be best to edit validity checker to work on entire file instead of chunks, to be called in parser -- would save 5 lines
+t_piece		*makelist(char *buf)
 {
 	t_piece *current;
 	t_piece *beginning;
