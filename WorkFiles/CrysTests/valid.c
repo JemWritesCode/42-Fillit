@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/23 22:10:03 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/24 23:27:41 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 **	- contains a valid number of adjacencies
 */
 
+#include <stdio.h>
+
 int		charcount(char* buf)
 {
 	int i;
@@ -27,18 +29,21 @@ int		charcount(char* buf)
 
 	count = 0;
 	i = 0;
-	if(buf[20] != '\n') // checks block length
-		return(0);
-	while(i < 21)
+	while(i < 20)
 	{
 		if(buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
-			return(0);
-		if(buf[i] == '\n' && !(i == 20 || ((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
-			return(0);
+			printf("invalid char at %d\n", i); //TODO: fix for files with no newline at end
+			//return(0);
+		if(buf[i] == '\n' && !(((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
+			printf("misplaced newline at %d\n", i); 
+			//return(0);
 		if(buf[i] == '#')
 			count++;
 		i++;
 	}
+	if(buf[i] && buf[i] != '\n') // checks block length
+		printf("invalid block length i = %d\n", i); 
+		//return(0);
 	return(count); // returns number of '#' characters contained in string
 }
 
@@ -67,12 +72,12 @@ int		adjacency_counter(char* buf)
 	return(count);
 }
 
-int		valid(char *buf)
+int		valid(char *buf, int size)
 {
 	int i;
 
 	i = 0;
-	while(buf[i])
+	while(i <= size)
 	{
 		if(charcount(buf + i) != 4)
 			return(0);
