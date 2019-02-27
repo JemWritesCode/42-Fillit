@@ -53,9 +53,9 @@ t_piece *printpiecelist(t_piece *piecelist)
 /*
 int		main(void)
 {
-	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', NULL};
-	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', NULL};
-	t_piece third = {{1, 0, 1, 1, 1, 2, 0, 2}, 'C', NULL};
+	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
+	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
+	t_piece third = {{0, 1, 1, 1, 0, 2, 1, 2}, 'C', 0, 0, NULL};
 	first.next = &second;
 	second.next = &third;
 	t_piece *listhead = &first;

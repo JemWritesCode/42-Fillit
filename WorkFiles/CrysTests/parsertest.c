@@ -58,7 +58,7 @@ t_piece		*makelist(char *buf)
 			current = current->next;
 		}
 		pieceletter++;
-		i = i+21;
+		i += 21;
 	}
 	return (beginning);
 }
@@ -74,14 +74,14 @@ t_piece		*parser(char *filename)
 	if (bytecount > 544 || bytecount < 20)
 		return (NULL);
 	buf[bytecount] = '\0';
-//	if(!valid(buf))		// re-work validitychecker to work with whole file instead of 21-char chunk
-//		return(NULL);
+	if(!valid(buf))
+		return(NULL);
 	return (makelist(buf));
 }
 
 int	main(void)
 {
-	t_piece *listhead = parser("../TestFiles/26Pieces");
+	t_piece *listhead = parser("../TestFiles/valid_9_twosamevertical");
 	printpiecelist(listhead);
 	return (0);	
 }
