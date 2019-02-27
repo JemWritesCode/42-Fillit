@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 19:31:20 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/26 13:56:42 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:16:08 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@ char	*readfile(char *filename) // reads the file in for testing -- same function
 	bytecount = read(fd, buf, 545);
 	char* ret = malloc(bytecount + 1);
 	if (bytecount <= 0)
-	{	
-		printf("invalid file path :(\n");
 		return (NULL);
-	}
 	if (bytecount > 544 || bytecount < 20)
-	{
-		printf("invalid filesize :(\n");
 		return (NULL);
-	}
 	int i = 0;
 	while (i < bytecount)
 	{
@@ -110,10 +104,9 @@ int main(void)
 
 	filepath = "../TestFiles/invalid_sample";
 	valid_expected = 0;
-	testbuf = readfile(filepath);
+	printf(GREY"%s "ENDCOLOR, filepath);
 	size = ft_strlen(testbuf);
 	valid_return = valid(testbuf, size);
-	printf(GREY"%s "ENDCOLOR, filepath);
 	if (valid_return == valid_expected)
 		printf(GREEN"%d\n"ENDCOLOR, valid_return);
 	else
@@ -135,7 +128,7 @@ int main(void)
 	else
 		printf(RED"%d\n"ENDCOLOR, charcount_return);
 	
-	test_string = "...\n....\n....\n####\n\n"; // line too short
+	test_string = "....\n....\n####\n...\n\n"; // line too short
 	charcount_expected = 0;
 	charcount_return = charcount(test_string);	
 	printf(GREY"line too short: ");

@@ -2,7 +2,7 @@
 **	Test function for the various elements of parser.c
 */
 
-#include "../../ProjectFiles/fillitproject/includes/fillit.h"
+#include "fillit.h"
 #include <stdio.h>
 
 t_piece *printpiecelist(t_piece *piecelist);
@@ -71,17 +71,20 @@ t_piece		*parser(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	bytecount = read(fd, buf, 545);
-	if (bytecount > 544 || bytecount < 20)
+	if (bytecount > 544 || bytecount < 19)
 		return (NULL);
 	buf[bytecount] = '\0';
-	if(!valid(buf))
+	if (valid(buf))
+		printf("%s", buf);
+/*	if(!valid(buf))
 		return(NULL);
+	printf("validity: %d\n", valid(buf));
 	return (makelist(buf));
+*/	return (NULL);
 }
 
 int	main(void)
 {
-	t_piece *listhead = parser("../TestFiles/valid_9_twosamevertical");
-	printpiecelist(listhead);
+	parser("../TestFiles/invalid_sample");
 	return (0);	
 }

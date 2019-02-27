@@ -6,11 +6,11 @@
 #    By: jcope <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/04 20:53:06 by jcope             #+#    #+#              #
-#    Updated: 2019/02/26 14:37:10 by cschulle         ###   ########.fr        #
+#    Updated: 2019/02/26 17:29:26 by cschulle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillitTEST
+NAME = TEST
 SRCS =	./testvalid.c\
 		./parsertest.c\
 		./pieceprinter.c
