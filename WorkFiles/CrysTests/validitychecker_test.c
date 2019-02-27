@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 19:31:20 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/26 18:16:08 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:29:11 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int main(void)
 	else
 		printf(RED"%d\n"ENDCOLOR, valid_return);
 
-	filepath = "../TestFiles/invalid_sample";
+	filepath = "../TestFiles/invalid_1";
 	valid_expected = 0;
 	printf(GREY"%s "ENDCOLOR, filepath);
 	size = ft_strlen(testbuf);
