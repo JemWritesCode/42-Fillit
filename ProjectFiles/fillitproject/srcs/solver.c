@@ -64,10 +64,13 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
-	if (piece){
 		if(piece->blockcoords[0] + piece->x_offset < map_size && piece->blockcoords[2] + piece->x_offset < map_size && 
 			piece->blockcoords[4] + piece->x_offset < map_size && piece->blockcoords[6] + piece->x_offset < map_size)
 		{
+			if(piece->blockcoords[1] + piece->y_offset < map_size && piece->blockcoords[3] + piece->y_offset < map_size && 
+				piece->blockcoords[5] + piece->y_offset < map_size && piece->blockcoords[7] + piece->y_offset < map_size)
+			{
+			// For Testing Only
 			printf("piece->piece->blockcoords[0] + piece->x_offset: %d\n", (piece->blockcoords[0] + piece->x_offset));
 			printf("piece->piece->blockcoords[1] + piece->y_offset: %d\n", (piece->blockcoords[1] + piece->y_offset));
 			printf("piece->piece->blockcoords[2] + piece->x_offset: %d\n", (piece->blockcoords[2] + piece->x_offset));
@@ -102,8 +105,7 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 			//this may be backwards. (nope)
 
 			//y cords
-			//piece->blockcoords[1] + piece->y_offset < map_size && piece->blockcoords[3] + piece->y_offset < map_size && 
-			//	piece->blockcoords[5] + piece->y_offset < map_size && piece->blockcoords[7] + piece->y_offset < map_size
+
 
 			//if it can't place it there in the bounds then it needs to put it back to the far left and then move it down one 
 			//then start moving to the right again.
