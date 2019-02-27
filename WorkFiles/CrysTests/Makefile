@@ -6,13 +6,14 @@
 #    By: jcope <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/04 20:53:06 by jcope             #+#    #+#              #
-#    Updated: 2019/02/24 21:36:42 by cschulle         ###   ########.fr        #
+#    Updated: 2019/02/26 17:29:26 by cschulle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillitTEST
-SRCS =	./valid.c\
-		./validitychecker_test.c
+NAME = TEST
+SRCS =	./testvalid.c\
+		./parsertest.c\
+		./pieceprinter.c
 OBJS =  ./*.o
 HDR = ../../ProjectFiles/fillitproject/includes/fillit.h 
 LIBHDR = ../../ProjectFiles/libft/libft.h

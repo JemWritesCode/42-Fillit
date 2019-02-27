@@ -2,7 +2,7 @@
 **	Test function for the various elements of parser.c
 */
 
-#include "../../ProjectFiles/fillitproject/includes/fillit.h"
+#include "fillit.h"
 #include <stdio.h>
 
 t_piece *printpiecelist(t_piece *piecelist);
@@ -58,7 +58,7 @@ t_piece		*makelist(char *buf)
 			current = current->next;
 		}
 		pieceletter++;
-		i = i+21;
+		i += 21;
 	}
 	return (beginning);
 }
@@ -71,17 +71,20 @@ t_piece		*parser(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	bytecount = read(fd, buf, 545);
-	if (bytecount > 544 || bytecount < 20)
+	if (bytecount > 544 || bytecount < 19)
 		return (NULL);
 	buf[bytecount] = '\0';
-//	if(!valid(buf))		// re-work validitychecker to work with whole file instead of 21-char chunk
-//		return(NULL);
+	if (valid(buf))
+		printf("%s", buf);
+/*	if(!valid(buf))
+		return(NULL);
+	printf("validity: %d\n", valid(buf));
 	return (makelist(buf));
+*/	return (NULL);
 }
 
 int	main(void)
 {
-	t_piece *listhead = parser("../TestFiles/26Pieces");
-	printpiecelist(listhead);
+	parser("../TestFiles/invalid_sample");
 	return (0);	
 }
