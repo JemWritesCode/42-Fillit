@@ -52,9 +52,10 @@ t_piece *printpiecelist(t_piece *piecelist)
 int 	main(void ){
 
 // should print 5x5 of dots.
-t_map *map;
-int map_size = 5;
-map = new_map(map_size);
+//t_map *map;
+//int map_size = 5;
+//map = new_map(map_size);
+
 // print_map(map, map_size); 
 // 
 // printf("\n\n");
@@ -62,35 +63,37 @@ map = new_map(map_size);
 
 // Fake pieces for testing.
 
-	printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES."); 
-	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
-	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
-	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
-	t_piece fourth = {{0, 0, 0, 1, 0, 2, 0, 3}, 'D', 0, 0, NULL};
-	//t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
-	first.next = &second;
-	second.next = &third;
-	third.next = NULL;
-	third.next = &fourth;
-	t_piece *listhead = &first;
+//	printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES."); 
+//	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
+//	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
+//	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
+//	t_piece fourth = {{0, 0, 0, 1, 0, 2, 0, 3}, 'D', 0, 0, NULL};
+//	//t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
+//	first.next = &second;
+//	second.next = &third;
+//	third.next = NULL;
+//	third.next = &fourth;
+//	t_piece *listhead = &first;
 
 
 	printf("TEST CASE REQUIRES SHIFT BACK TO LEFT AND THEN MOVE RIGHT"); 
 	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
 	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
 	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
-	t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
+	t_piece fourth = {{0, 0, 0, 1, 1, 0, 1, 1}, 'D', 0, 0, NULL}; // square
+	//t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
 	first.next = &second;
 	second.next = &third;
-	third.next = NULL;
+	//third.next = NULL;
 	third.next = &fourth;
 	t_piece *listhead = &first;
 
 
-solve_map(map, listhead, map_size);
+//solve_map(map, listhead, map_size);
+solve(listhead);
 
-printf("\nCURRENT SOLUTION MAP\n");
-print_map(map, map_size); 
+//printf("\nCURRENT SOLUTION MAP\n");
+//print_map(map, map_size); 
 
 // printpiecelist(listhead);
 
