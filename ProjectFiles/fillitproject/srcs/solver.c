@@ -66,14 +66,14 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
-	if(piece->blockcoords[1] + piece->y_offset <= map_size && 
-		piece->blockcoords[3] + piece->y_offset <= map_size && 
-		piece->blockcoords[5] + piece->y_offset <= map_size &&
-	 	piece->blockcoords[7] + piece->y_offset <= map_size)
+	if(piece->blockcoords[1] + piece->y_offset < map_size && 
+		piece->blockcoords[3] + piece->y_offset < map_size && 
+		piece->blockcoords[5] + piece->y_offset < map_size &&
+	 	piece->blockcoords[7] + piece->y_offset < map_size)
 	{
-		if(piece->blockcoords[0] + piece->x_offset <= map_size &&
-			 	piece->blockcoords[2] + piece->x_offset <= map_size && 
-				piece->blockcoords[4] + piece->x_offset <= map_size &&
+		if(piece->blockcoords[0] + piece->x_offset < map_size &&
+			 	piece->blockcoords[2] + piece->x_offset < map_size && 
+				piece->blockcoords[4] + piece->x_offset < map_size &&
 				piece->blockcoords[6] + piece->x_offset <= map_size)
 		{
 			// For Testing Only
@@ -85,32 +85,27 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 			printf("piece->piece->blockcoords[5] + piece->y_offset: %d\n", (piece->blockcoords[5] + piece->y_offset));	
 			printf("piece->piece->blockcoords[6] + piece->x_offset: %d\n", (piece->blockcoords[6] + piece->x_offset));
 			printf("piece->piece->blockcoords[7] + piece->y_offset: %d\n", (piece->blockcoords[7] + piece->y_offset));
-			
-				if (!overlap(map, piece, piece->x_offset, piece->y_offset))
-				{
-					place(piece, map, piece->x_offset, piece->y_offset);
-					if(piece->next)
-						return (solve_map(map, piece->next, map_size));
-				}
-				else
-				{
-					// Just testing out D since it'll require snap left & map grow. 
-					// if(piece->pieceletter == 'D'){
-					// 	
-					// 	
-					// }
-					piece->x_offset++;
-					solve_map(map, piece, map_size);
-				}
+		
+			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
+			{
+				place(piece, map, piece->x_offset, piece->y_offset);
+				if(piece->next)
+					solve_map(map, piece->next, map_size);
+			}
+			else
+			{
+				piece->x_offset++;
+				solve_map(map, piece, map_size);
+			}
 		}
 		else
 		{
 			piece->x_offset = 0;
 			piece->y_offset++;
-			solve_map(map, piece, map_size);
-		}	
+		}
 	}
-	return (0);//not solved
+	return (0);
+	//return ((piece == NULL) ? 0: 1); // solved
 
 
 		//base case // exit

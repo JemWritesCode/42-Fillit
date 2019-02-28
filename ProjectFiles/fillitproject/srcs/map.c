@@ -68,4 +68,5 @@ void	print_map(t_map *map, int size)
 
 //void	free_piecelist(t_piece *piecelisthead)
 //{	
+
 //}
