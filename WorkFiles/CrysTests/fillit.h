@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/26 18:01:01 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/27 20:21:38 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ t_map			*solve(t_piece *piecelist);
 t_piece			*parser(char *filename);
 void			shift_x(t_piece *piece, int n);
 void			shift_y(t_piece *piece, int y);
-int				valid(char *buf);
+int				valid(char *buf, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/17 19:35:32 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/02/26 13:00:58 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ int		charcount(char* buf)
 
 	count = 0;
 	i = 0;
-	if(buf[20] != '\n') // checks block length
-		return(0);
-	while(i < 21)
+	while(i < 20)
 	{
-		if(buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
+		if(buf[i] && buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
 			return(0);
-		if(buf[i] == '\n' && !(i == 20 || ((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
+		if(buf[i] == '\n' && !(((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
 			return(0);
 		if(buf[i] == '#')
 			count++;
 		i++;
 	}
-	return(count); // returns number of '#' characters containted in string
+	if(buf[i] && buf[i] != '\n') // checks block length
+		return(0);
+	return(count); // returns number of '#' characters contained in string
 }
 
 int		adjacency_counter(char* buf)
@@ -67,11 +67,18 @@ int		adjacency_counter(char* buf)
 	return(count);
 }
 
-int		valid(char *buf)
+int		valid(char *buf, int size)
 {
-	if(charcount(buf) != 4)
-		return(0);
-	if(adjacency_counter(buf) != 6 && adjacency_counter(buf) != 8)
-		return(0);
+	int i;
+
+	i = 0;
+	while(i <= size)
+	{
+		if(charcount(buf + i) != 4)
+			return(0);
+		if(adjacency_counter(buf + i) != 6 && adjacency_counter(buf + i) != 8)
+			return(0);
+		i += 21;
+	}
 	return(1);
 }
