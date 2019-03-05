@@ -66,15 +66,17 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
-	if(piece->blockcoords[1] + piece->y_offset < map_size && 
+	piece->x_offset = 0;
+	piece->y_offset = 0;
+	while (piece->blockcoords[1] + piece->y_offset < map_size && 
 		piece->blockcoords[3] + piece->y_offset < map_size && 
 		piece->blockcoords[5] + piece->y_offset < map_size &&
 	 	piece->blockcoords[7] + piece->y_offset < map_size)
 	{
-		if(piece->blockcoords[0] + piece->x_offset < map_size &&
+		while (piece->blockcoords[0] + piece->x_offset < map_size &&
 			 	piece->blockcoords[2] + piece->x_offset < map_size && 
 				piece->blockcoords[4] + piece->x_offset < map_size &&
-				piece->blockcoords[6] + piece->x_offset <= map_size)
+				piece->blockcoords[6] + piece->x_offset < map_size)
 		{
 			// For Testing Only
 			printf("piece->piece->blockcoords[0]:%d + piece->x_offset: %d = %d\n", piece->blockcoords[0], piece->x_offset, (piece->blockcoords[0] + piece->x_offset));
@@ -89,23 +91,20 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 			{
 				place(piece, map, piece->x_offset, piece->y_offset);
-				if(piece->next)
-					solve_map(map, piece->next, map_size);
+				piece->x_offset = map_size; // break out of whiles for this piece.
+				piece->y_offset = map_size; // break out of whiles for this piece.
+				if(!piece->next) //you placed the last piece and now there are no more. solved.
+					return (1);
+				if (solve_map(map, piece->next, map_size))
+					return (1);
 			}
-			else
-			{
 				piece->x_offset++;
-				solve_map(map, piece, map_size);
-			}
 		}
-		else
-		{
-			piece->x_offset = 0;
-			piece->y_offset++;
-			solve_map(map, piece, map_size);
-		}
+		piece->x_offset = 0;
+		piece->y_offset++;
 	}
-	return (0);
+	return (0); // never reached the last piece. Failed.
+	
 	//return ((piece == NULL) ? 0: 1); // solved
 
 
@@ -127,9 +126,8 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 
 
 
-// 1 = not solved
-// 0 = solved.
-// cause it gets flipped by the !
+// 0 = not solved
+// 1 = solved.
 }
 
 /*
@@ -160,14 +158,23 @@ t_map	*solve(t_piece *piecelist)
 
 	map_size = round_up_sq_rt(count_pieces(piecelist) * 4);
 	map = new_map(map_size);
-	//if (!solve_map(map, piecelist, map_size))
-	//{
-	//	//map_size++;
-	//	////free_map(map);
-	//	//map = new_map(map_size);
-	//}
-	//solve_map(map, piecelist, map_size); //testing
-	printf("!SolveMap Returns: %d\n", !solve_map(map, piecelist, map_size)); // Testing Only
+	//while (!solve_map(map, piecelist, map_size))
+	////{
+	//	//set_piece_offsets_zero
+	//	map_size++;
+//
+	////	//free_map(map);
+	//	map = NULL; // for testing. Just til freemap is made.
+	//	map = new_map(map_size);
+	////}
+
+	//Testing with just 1 map grow.
+	printf("SolveMap Returns: %d\n", solve_map(map, piecelist, map_size)); // Testing Only
+	map_size++;
+	map = new_map(map_size);
+	printf("SolveMap Returns: %d\n", solve_map(map, piecelist, map_size));
+
+
 	print_map(map, map_size);
 	return(map);
 }
