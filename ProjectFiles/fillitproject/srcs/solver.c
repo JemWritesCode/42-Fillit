@@ -77,14 +77,14 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 				piece->blockcoords[6] + piece->x_offset <= map_size)
 		{
 			// For Testing Only
-			printf("piece->piece->blockcoords[0] + piece->x_offset: %d\n", (piece->blockcoords[0] + piece->x_offset));
-			printf("piece->piece->blockcoords[1] + piece->y_offset: %d\n", (piece->blockcoords[1] + piece->y_offset));
-			printf("piece->piece->blockcoords[2] + piece->x_offset: %d\n", (piece->blockcoords[2] + piece->x_offset));
-			printf("piece->piece->blockcoords[3] + piece->y_offset: %d\n", (piece->blockcoords[3] + piece->y_offset));
-			printf("piece->piece->blockcoords[4] + piece->x_offset: %d\n", (piece->blockcoords[4] + piece->x_offset));
-			printf("piece->piece->blockcoords[5] + piece->y_offset: %d\n", (piece->blockcoords[5] + piece->y_offset));	
-			printf("piece->piece->blockcoords[6] + piece->x_offset: %d\n", (piece->blockcoords[6] + piece->x_offset));
-			printf("piece->piece->blockcoords[7] + piece->y_offset: %d\n", (piece->blockcoords[7] + piece->y_offset));
+			printf("piece->piece->blockcoords[0]:%d + piece->x_offset: %d = %d\n", piece->blockcoords[0], piece->x_offset, (piece->blockcoords[0] + piece->x_offset));
+			printf("piece->piece->blockcoords[1]:%d + piece->y_offset: %d = %d\n", piece->blockcoords[1], piece->y_offset, (piece->blockcoords[1] + piece->y_offset));
+			printf("piece->piece->blockcoords[2]:%d + piece->x_offset: %d = %d\n", piece->blockcoords[2], piece->x_offset, (piece->blockcoords[2] + piece->x_offset));
+			printf("piece->piece->blockcoords[3]:%d + piece->y_offset: %d = %d\n", piece->blockcoords[3], piece->y_offset, (piece->blockcoords[3] + piece->y_offset));
+			printf("piece->piece->blockcoords[4]:%d + piece->x_offset: %d = %d\n", piece->blockcoords[4], piece->x_offset, (piece->blockcoords[4] + piece->x_offset));
+			printf("piece->piece->blockcoords[5]:%d + piece->y_offset: %d = %d\n", piece->blockcoords[5], piece->y_offset, (piece->blockcoords[5] + piece->y_offset));	
+			printf("piece->piece->blockcoords[6]:%d + piece->x_offset: %d = %d\n", piece->blockcoords[6], piece->x_offset, (piece->blockcoords[6] + piece->x_offset));
+			printf("piece->piece->blockcoords[7]:%d + piece->y_offset: %d = %d\n", piece->blockcoords[7], piece->y_offset, (piece->blockcoords[7] + piece->y_offset));
 		
 			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 			{
@@ -102,6 +102,7 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 		{
 			piece->x_offset = 0;
 			piece->y_offset++;
+			solve_map(map, piece, map_size);
 		}
 	}
 	return (0);
@@ -159,12 +160,13 @@ t_map	*solve(t_piece *piecelist)
 
 	map_size = round_up_sq_rt(count_pieces(piecelist) * 4);
 	map = new_map(map_size);
-	//while (!solve_map(map, piecelist, map_size))
+	//if (!solve_map(map, piecelist, map_size))
 	//{
-	//	map_size++;
-	//	//free_map(map);
-	//	map = new_map(map_size);
+	//	//map_size++;
+	//	////free_map(map);
+	//	//map = new_map(map_size);
 	//}
+	//solve_map(map, piecelist, map_size); //testing
 	printf("!SolveMap Returns: %d\n", !solve_map(map, piecelist, map_size)); // Testing Only
 	print_map(map, map_size);
 	return(map);
