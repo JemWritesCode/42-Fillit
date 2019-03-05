@@ -158,23 +158,13 @@ t_map	*solve(t_piece *piecelist)
 
 	map_size = round_up_sq_rt(count_pieces(piecelist) * 4);
 	map = new_map(map_size);
-	//while (!solve_map(map, piecelist, map_size))
-	////{
-	//	//set_piece_offsets_zero
-	//	map_size++;
-//
-	////	//free_map(map);
-	//	map = NULL; // for testing. Just til freemap is made.
-	//	map = new_map(map_size);
-	////}
+	while (!solve_map(map, piecelist, map_size))
+	{
+		map_size++;
 
-	//Testing with just 1 map grow.
-	printf("SolveMap Returns: %d\n", solve_map(map, piecelist, map_size)); // Testing Only
-	map_size++;
-	map = new_map(map_size);
-	printf("SolveMap Returns: %d\n", solve_map(map, piecelist, map_size));
-
-
+		//free_map(map);
+		map = new_map(map_size);
+	}
 	print_map(map, map_size);
 	return(map);
 }
