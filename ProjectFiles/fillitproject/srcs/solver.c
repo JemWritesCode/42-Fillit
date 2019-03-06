@@ -68,6 +68,8 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
 	piece->x_offset = 0;
 	piece->y_offset = 0;
+	if(!piece) //you placed the last piece and now there are no more. solved.
+		return (1);
 	while (piece->blockcoords[1] + piece->y_offset < map_size && 
 		piece->blockcoords[3] + piece->y_offset < map_size && 
 		piece->blockcoords[5] + piece->y_offset < map_size &&
@@ -90,44 +92,26 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 		
 			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 			{
-				place(piece, map, piece->x_offset, piece->y_offset);
-				piece->x_offset = map_size; // break out of whiles for this piece.
-				piece->y_offset = map_size; // break out of whiles for this piece.
-				if(!piece->next) //you placed the last piece and now there are no more. solved.
-					return (1);
-				if (solve_map(map, piece->next, map_size))
-					return (1);
+				if (piece->next){
+					if (solve_map(map, piece->next, map_size))
+						return (1);
+					else
+					{
+						place(piece, map, piece->x_offset, piece->y_offset);
+						piece->x_offset = map_size; // break out of whiles for this piece.
+						piece->y_offset = map_size; // break out of whiles for this piece.
+					}					
+				}
 			}
-				piece->x_offset++;
+			piece->x_offset++;
 		}
 		piece->x_offset = 0;
 		piece->y_offset++;
 	}
-	return (0); // never reached the last piece. Failed.
-	
-	//return ((piece == NULL) ? 0: 1); // solved
-
-
-		//base case // exit
-		// > If there's no more pieces.
-		// > If you can't solve the map, exit so we can try again with a bigger map_size. 
-
-			// move the piece and try to solve.
-			//this may be backwards. (nope)
-
-			//y cords
-
-
-			//if it can't place it there in the bounds then it needs to put it back to the far left and then move it down one 
-			//then start moving to the right again.
+	return (0); // never reached the last piece. Failed, go grow map_size.
 
 			//need to also account for Sample 3 problem where I need to restart at the first piece and try moving that
 			// before I try increasing the map size. 
-
-
-
-// 0 = not solved
-// 1 = solved.
 }
 
 /*
@@ -161,7 +145,7 @@ t_map	*solve(t_piece *piecelist)
 	while (!solve_map(map, piecelist, map_size))
 	{
 		map_size++;
-
+ 
 		//free_map(map);
 		map = new_map(map_size);
 	}

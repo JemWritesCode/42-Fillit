@@ -12,8 +12,6 @@
 
 #include "../includes/fillit.h"
 
-
-
 int		main(int argc, char **argv)
 {
 	t_piece	*piecelist;
@@ -24,7 +22,7 @@ int		main(int argc, char **argv)
 		ft_putstr("usage: ./fillit source_file\n");
 		EXIT_FAILURE;
 	}
-	if(piecelist = parser(argv[1]) == NULL)
+	if((piecelist = parser(argv[1])) == NULL)
 	{
 		ft_putstr("error\n");
 		EXIT_FAILURE;		
