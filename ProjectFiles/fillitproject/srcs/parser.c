@@ -12,6 +12,11 @@
 
 #include "../includes/fillit.h"
 
+//void	free_piecelist(t_piece *piecelisthead)
+//{	
+
+//}
+
 void	align(t_piece *piece)
 {
 	while (piece->blockcoords[0] != 0 && \

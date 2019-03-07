@@ -14,20 +14,12 @@
 
 int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
 {
-	int	avail;
-	int x;
-	int y;
+	int i;
 
-	x = 0;
-	y = 1;
-	avail = 0;
-	while (x <= 6 && map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x]+ x_offset] == '.')
-	{
-		avail++;
-		x += 2;
-		y += 2;
-	}
-	return (avail != 4);
+	i = 0;
+	while (i <= 6 && map->array[piece->blockcoords[i + 1] + y_offset][piece->blockcoords[i]+ x_offset] == '.')
+		i += 2;
+	return (i != 8);
 }
 
 void	place(t_piece *piece, t_map *map, int x_offset, int y_offset, char letter)
@@ -124,7 +116,6 @@ t_map	*solve(t_piece *piecelist)
 	while (!solve_map(map, piecelist, map_size))
 	{
 		map_size++;
-	
 		//free_map(map);
 		map = new_map(map_size);
 	}
