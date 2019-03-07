@@ -12,29 +12,26 @@
 
 #include "../includes/fillit.h"
 
-int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
+int		overlap(t_map *map, t_piece *piece)
 {
 	int i;
 
 	i = 0;
 	while (i <= 6 &&
-		map->array[piece->blockcoords[i + 1] + y_offset][piece->blockcoords[i] + x_offset] == '.')
+		map->array[piece->blockcoords[i + 1] + piece->y_offset][piece->blockcoords[i] + piece->x_offset] == '.')
 		i += 2;
 	return (i != 8);
 }
 
 void	place(t_piece *piece, t_map *map, char letter)
 {
-	int x;
-	int y;
+	int i;
 
-	x = 0;
-	y = 1;
-	while (x <= 6)
+	i = 0;
+	while (i <= 6)
 	{
-		map->array[piece->blockcoords[y] + piece->y_offset][piece->blockcoords[x] + piece->x_offset] = letter;
-		x += 2;
-		y += 2;		
+		map->array[piece->blockcoords[i + 1] + piece->y_offset][piece->blockcoords[i] + piece->x_offset] = letter;
+		i += 2;
 	}
 }
 
@@ -68,7 +65,7 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 	{
 		while (in_bounds(piece, map_size, 'x'))
 		{
-			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
+			if (!overlap(map, piece))
 			{
 				place(piece, map, piece->pieceletter);
 				if (solve_map(map, piece->next, map_size))
