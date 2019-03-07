@@ -39,7 +39,7 @@ int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
 	return (avail != 4);
 }
 
-void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
+void	place(t_piece *piece, t_map *map, int x_offset, int y_offset, char letter)
 {
 	int x;
 	int y;
@@ -50,7 +50,7 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 	while(x <= 6)
 	{
 		
-		map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x] + x_offset] = piece->pieceletter;
+		map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x] + x_offset] = letter;
 		x += 2;
 		y += 2;		
 	}
@@ -66,10 +66,10 @@ void	place(t_piece *piece, t_map *map, int x_offset, int y_offset)
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
+	if(!piece) //you placed the last piece and now there are no more. solved.
+	return (1);
 	piece->x_offset = 0;
 	piece->y_offset = 0;
-	if(!piece) //you placed the last piece and now there are no more. solved.
-		return (1);
 	while (piece->blockcoords[1] + piece->y_offset < map_size && 
 		piece->blockcoords[3] + piece->y_offset < map_size && 
 		piece->blockcoords[5] + piece->y_offset < map_size &&
@@ -92,15 +92,16 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 		
 			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 			{
-				if (piece->next){
-					if (solve_map(map, piece->next, map_size))
-						return (1);
-					else
-					{
-						place(piece, map, piece->x_offset, piece->y_offset);
-						piece->x_offset = map_size; // break out of whiles for this piece.
-						piece->y_offset = map_size; // break out of whiles for this piece.
-					}					
+				place(piece, map, piece->x_offset, piece->y_offset, piece->pieceletter);
+				if (solve_map(map, piece->next, map_size))
+					return (1);
+				else
+				{
+					//unplace current piece
+					//move it over
+					//then try solve_map recursively on the rest of the pieces to see if they fit with this 
+					//current piece moved.
+					place(piece, map, piece->x_offset, piece->y_offset, '.');
 				}
 			}
 			piece->x_offset++;
@@ -145,10 +146,11 @@ t_map	*solve(t_piece *piecelist)
 	while (!solve_map(map, piecelist, map_size))
 	{
 		map_size++;
- 
+	
 		//free_map(map);
 		map = new_map(map_size);
 	}
+	printf("SolveMap Returns: %d\n",solve_map(map, piecelist, map_size) );
 	print_map(map, map_size);
 	return(map);
 }
