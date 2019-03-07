@@ -69,6 +69,7 @@ int		in_bounds(t_piece *piece, int map_size, char axis)
 ** to check if the rest can fit with the current piece placed where it is.
 **  Otherwise it backtracks and moves current piece
 ** then checks if all the pieces that come after fit with current piece moved.
+** place() can either place the piece or place '.' to clear a piece.
 */
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)

@@ -20,15 +20,15 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putstr("usage: ./fillit source_file\n");
-		EXIT_FAILURE;
+		return (1);
 	}
 	if ((piecelist = parser(argv[1])) == NULL)
 	{
 		ft_putstr("error\n");
-		EXIT_FAILURE;		
+		return (1);
 	}
 	map = solve(piecelist);
 	free(map);
-	free_list(piecelist);
+	free(piecelist);
 	return (0);
 }
