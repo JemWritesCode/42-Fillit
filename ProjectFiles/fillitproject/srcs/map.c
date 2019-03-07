@@ -12,6 +12,23 @@
 
 #include "../includes/fillit.h"
 
+/*
+** Get the square root and round it up for starting map map_size.
+** Example: If the number of blocks in pieces would require a 2.3 x 2.3 grid
+** then it needs to round up to be 3x3 minimum to fit.
+** In that case this function would return 3.
+*/
+
+int		round_up_sq_rt(int num)
+{
+	int	map_size;
+
+	map_size = 2;
+	while (map_size * map_size < num)
+		map_size++;
+	return (map_size);
+}
+
 t_map	*new_map(int map_size)
 {
 	t_map *map;

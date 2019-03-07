@@ -28,7 +28,7 @@ int		main(int argc, char **argv)
 		EXIT_FAILURE;		
 	}
 	map = solve(piecelist);
-	//free_map(map);
-	//free_list(piecelist);
+	free(map);
+	free_list(piecelist);
 	return (0);
 }

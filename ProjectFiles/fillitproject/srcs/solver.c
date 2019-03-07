@@ -100,23 +100,6 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 }
 
 /*
-** Get the square root and round it up for starting map map_size.
-** Example: If the number of blocks in pieces would require a 2.3 x 2.3 grid
-** then it needs to round up to be 3x3 minimum to fit.
-** In that case this function would return 3.
-*/
-
-int		round_up_sq_rt(int num)
-{
-	int	map_size;
-
-	map_size = 2;
-	while (map_size * map_size < num)
-		map_size++;
-	return (map_size);
-}
-
-/*
 ** Start with the smallest map map_size for number of blocks in pieces.
 */
 
@@ -130,7 +113,7 @@ t_map	*solve(t_piece *piecelist)
 	while (!solve_map(map, piecelist, map_size))
 	{
 		map_size++;
-		//free_map(map);
+		free(map);
 		map = new_map(map_size);
 	}
 	print_map(map, map_size);
