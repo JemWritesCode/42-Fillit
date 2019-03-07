@@ -51,6 +51,8 @@ t_piece *printpiecelist(t_piece *piecelist)
 
 int 	main(void ){
 
+setbuf(stdout, NULL); // set all writes to stdout to be unbuffered. This helps keep the printfs in correct order.
+
 // should print 5x5 of dots.
 //t_map *map;
 //int map_size = 5;
@@ -63,7 +65,7 @@ int 	main(void ){
 
 // Fake pieces for testing.
 
-// printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES"); 
+// printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES\n"); 
 // t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
 // t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
 // t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
@@ -72,7 +74,7 @@ int 	main(void ){
 // third.next = NULL;
 // t_piece *listhead = &first;	
 
-// printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES, REQUIRES MAP GROWTH."); 
+// printf("TEST CASE FOR FITS WITH ONLY HORIZONTAL MOVES, REQUIRES MAP GROWTH.\n"); 
 // t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
 // t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
 // t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
@@ -80,12 +82,12 @@ int 	main(void ){
 // //t_piece fourth = {{1, 0, 1, 1, 1, 2, 0, 2}, 'D', 0, 0, NULL};
 // first.next = &second;
 // second.next = &third;
-// third.next = NULL;
 // third.next = &fourth;
+// fourth.next = NULL;
 // t_piece *listhead = &first;
 
 
-//	printf("TEST CASE REQUIRES SHIFT BACK TO LEFT AND THEN MOVE RIGHT. NO MAP GROWTH."); 
+//	printf("TEST CASE REQUIRES SHIFT BACK TO LEFT AND THEN MOVE RIGHT. NO MAP GROWTH.\n"); 
 //	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
 //	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
 //	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL};
@@ -97,7 +99,7 @@ int 	main(void ){
 //	fourth.next = NULL;
 //	t_piece *listhead = &first;
 
-	printf("TEST CASE REQUIRES SHIFT BACK TO LEFT AND THEN MOVE RIGHT && MAP GROWTH"); 
+	printf("TEST CASE REQUIRES SHIFT BACK TO LEFT AND THEN MOVE RIGHT && MAP GROWTH\n"); 
 	t_piece first = {{0, 0, 0, 1, 1, 0, 1, 1}, 'A', 0, 0, NULL};
 	t_piece second = {{0, 0, 0, 1, 0, 2, 0, 3}, 'B', 0, 0, NULL};
 	t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL}; // l
@@ -110,8 +112,7 @@ int 	main(void ){
 	fourth.next = NULL;
 	t_piece *listhead = &first;
 
-// printf("Sample problem 3. no map growth but needs first piece shifted with backtracking."); 
-// //need to fix coords still
+// printf("Sample problem 3. no map growth but needs first piece shifted with backtracking.\n"); 
 // t_piece first = {{0, 0, 0, 1, 1, 1, 1, 2}, 'A', 0, 0, NULL}; // 
 // t_piece second = {{0, 1, 1, 1, 2, 1, 1, 0}, 'B', 0, 0, NULL}; // upsidedown T
 // t_piece third = {{0, 0, 0, 1, 0, 2, 0, 3}, 'C', 0, 0, NULL}; // l
