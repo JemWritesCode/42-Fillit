@@ -20,9 +20,9 @@ t_piece		*makepiece(char* buf, char pieceletter)
 	y = 1;
 	if (!(piece_ptr = (t_piece*)malloc(sizeof(t_piece))))
 		return (NULL);
-	while(i < 20)
+	while (i < 20)
 	{
-		if(buf[i] == '#')
+		if (buf[i] == '#')
 		{
 			test++;	
 			piece_ptr->blockcoords[x] = (i > 5) ? (i % 5) : i;

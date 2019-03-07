@@ -34,7 +34,7 @@ typedef struct	s_map
 int				in_bounds(t_piece *piece, int map_size, char axis);
 int				overlap(t_map *map, t_piece *piece, int x_offset, int y_offset);
 int				solve_map(t_map *map, t_piece *piecelist, int map_size);
-void			place(t_piece *piece, t_map *map, int x_offset, int y_offset, char letter);
+void			place(t_piece *piece, t_map *map, char letter);
 size_t			count_pieces(t_piece *piecelist);
 void			print_map(t_map *map, int size);
 int				round_up_sq_rt(int num);

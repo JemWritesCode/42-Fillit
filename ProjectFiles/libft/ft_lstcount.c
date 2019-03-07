@@ -17,7 +17,7 @@ size_t	ft_lstcount(t_list *list)
 	size_t	count;
 
 	count = 0;
-	while(list != NULL)
+	while (list != NULL)
 	{
 		list = list->next;
 		count++;

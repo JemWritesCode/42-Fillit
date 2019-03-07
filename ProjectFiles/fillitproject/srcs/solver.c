@@ -17,21 +17,22 @@ int		overlap(t_map *map, t_piece *piece, int x_offset, int y_offset)
 	int i;
 
 	i = 0;
-	while (i <= 6 && map->array[piece->blockcoords[i + 1] + y_offset][piece->blockcoords[i]+ x_offset] == '.')
+	while (i <= 6 &&
+		map->array[piece->blockcoords[i + 1] + y_offset][piece->blockcoords[i] + x_offset] == '.')
 		i += 2;
 	return (i != 8);
 }
 
-void	place(t_piece *piece, t_map *map, int x_offset, int y_offset, char letter)
+void	place(t_piece *piece, t_map *map, char letter)
 {
 	int x;
 	int y;
-	
+
 	x = 0;
 	y = 1;
-	while(x <= 6)
+	while (x <= 6)
 	{
-		map->array[piece->blockcoords[y] + y_offset][piece->blockcoords[x] + x_offset] = letter;
+		map->array[piece->blockcoords[y] + piece->y_offset][piece->blockcoords[x] + piece->x_offset] = letter;
 		x += 2;
 		y += 2;		
 	}
@@ -59,7 +60,7 @@ int		in_bounds(t_piece *piece, int map_size, char axis)
 
 int		solve_map(t_map *map, t_piece *piece, int map_size)
 {	
-	if(!piece)
+	if (!piece)
 		return (1);
 	piece->x_offset = 0;
 	piece->y_offset = 0;
@@ -69,12 +70,12 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 		{
 			if (!overlap(map, piece, piece->x_offset, piece->y_offset))
 			{
-				place(piece, map, piece->x_offset, piece->y_offset, piece->pieceletter);
+				place(piece, map, piece->pieceletter);
 				if (solve_map(map, piece->next, map_size))
 					return (1);
 				else
 				{
-					place(piece, map, piece->x_offset, piece->y_offset, '.');
+					place(piece, map, '.');
 				}
 			}
 			piece->x_offset++;

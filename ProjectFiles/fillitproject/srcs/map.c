@@ -38,7 +38,7 @@ size_t	count_pieces(t_piece *piecelist)
 	size_t	count;
 
 	count = 0;
-	while(piecelist != NULL)
+	while (piecelist != NULL)
 	{
 		piecelist = piecelist->next;
 		count++;
@@ -54,7 +54,7 @@ void	print_map(t_map *map, int size)
 	int i;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		ft_putstr(map->array[i]);
 		ft_putchar('\n');
