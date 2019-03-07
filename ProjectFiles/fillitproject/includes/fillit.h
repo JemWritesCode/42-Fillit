@@ -13,17 +13,17 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-#include <unistd.h>
-#include <fcntl.h>
-#include "../../libft/libft.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include "../../libft/libft.h"
 
-typedef struct		s_piece
+typedef struct	s_piece
 {
 	int				blockcoords[8];
 	char			pieceletter;
 	int				x_offset;
 	int				y_offset;
-	struct s_piece	*next; // next has to be a pointer to the next structure in the linked list. 
+	struct s_piece	*next;
 }				t_piece;
 
 typedef struct	s_map
