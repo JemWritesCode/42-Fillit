@@ -12,10 +12,16 @@
 
 #include "../includes/fillit.h"
 
-//void	free_piecelist(t_piece *piecelisthead)
-//{	
-
-//}
+void	free_piecelist(t_piece *piecelist)
+{	
+	while (piecelist)
+	{
+		// need to delete the stuff from inside of the piecelist?
+		ft_memdel((void **)&piecelist); // this deletes the overall piecelist
+		piecelist = piecelist->next;
+	}
+	return (NULL);	
+}
 
 void	align(t_piece *piece)
 {

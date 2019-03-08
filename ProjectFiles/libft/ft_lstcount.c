@@ -22,5 +22,5 @@ size_t	ft_lstcount(t_list *list)
 		list = list->next;
 		count++;
 	}
-	return(count);
+	return (count);
 }

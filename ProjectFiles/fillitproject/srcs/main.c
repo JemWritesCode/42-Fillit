@@ -15,7 +15,6 @@
 int		main(int argc, char **argv)
 {
 	t_piece	*piecelist;
-	t_map	*map;
 
 	if (argc != 2)
 	{
@@ -27,8 +26,7 @@ int		main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (1);
 	}
-	map = solve(piecelist);
-	free(map);
-	free(piecelist);
+	solve(piecelist);
+	free_piecelist(piecelist);
 	return (0);
 }

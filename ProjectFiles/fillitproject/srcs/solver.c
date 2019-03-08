@@ -104,7 +104,7 @@ int		solve_map(t_map *map, t_piece *piece, int map_size)
 ** Start with the smallest map map_size for number of blocks in pieces.
 */
 
-t_map	*solve(t_piece *piecelist)
+void	solve(t_piece *piecelist)
 {
 	t_map	*map;
 	int		map_size;
@@ -114,9 +114,10 @@ t_map	*solve(t_piece *piecelist)
 	while (!solve_map(map, piecelist, map_size))
 	{
 		map_size++;
-		free(map);
+		free_map(map, map_size);
 		map = new_map(map_size);
 	}
 	print_map(map, map_size);
+	free_map(map, map_size);
 	return (map);
 }
