@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 22:23:06 by cschulle          #+#    #+#             */
-/*   Updated: 2019/03/07 20:47:01 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 21:08:31 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_piecelist(t_piece *piecelist)
 	return (NULL);	
 }
 */
-void	align(t_piece *piece)
+t_piece	*align(t_piece *piece)
 {
 	while (piece->blockcoords[0] != 0 && \
 			piece->blockcoords[2] != 0 && \
@@ -35,6 +35,7 @@ void	align(t_piece *piece)
 			piece->blockcoords[5] != 0 && \
 			piece->blockcoords[7] != 0)
 		shift_y(piece, -1);
+	return (piece);
 }
 
 t_piece		*makepiece(char *buf, char pieceletter)
@@ -63,8 +64,7 @@ t_piece		*makepiece(char *buf, char pieceletter)
 	piece_ptr->x_offset = 0;
 	piece_ptr->y_offset = 0;
 	piece_ptr->pieceletter = pieceletter;
-	align(piece_ptr);
-	return (piece_ptr);
+	return (align(piece_ptr));
 }
 
 t_piece		*makelist(char *buf, int size)
@@ -91,6 +91,7 @@ t_piece		*makelist(char *buf, int size)
 		pieceletter++;
 		i += 21;
 	}
+	current->next = NULL;
 	return (beginning);
 }
 
