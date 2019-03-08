@@ -38,5 +38,5 @@ int main(void)
 	printf("6 = %s\n", (parser("TestFiles/valid_6")));
 	printf("7 = %s\n", (parser("TestFiles/valid_7")));
 	printf("8 = %s\n", (parser("TestFiles/valid_8")));
-	return(0);
+	return (0);
 }

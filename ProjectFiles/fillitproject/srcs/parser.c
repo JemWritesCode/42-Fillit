@@ -11,19 +11,20 @@
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
-/*
-void	free_piecelist(t_piece *piecelist)
-{	
-	while (piecelist)
+
+void		free_piecelist(t_piece *list)
+{
+	t_piece *tmp;
+
+	while (list)
 	{
-		// need to delete the stuff from inside of the piecelist?
-		ft_memdel((void **)&piecelist); // this deletes the overall piecelist
-		piecelist = piecelist->next;
+		tmp = list;
+		list = list->next;
+		free(tmp);
 	}
-	return (NULL);	
 }
-*/
-t_piece	*align(t_piece *piece)
+
+t_piece		*align(t_piece *piece)
 {
 	while (piece->blockcoords[0] != 0 && \
 			piece->blockcoords[2] != 0 && \
@@ -71,7 +72,7 @@ t_piece		*makelist(char *buf, int size)
 {
 	t_piece *current;
 	t_piece *beginning;
-	int 	i;
+	int		i;
 	char	pieceletter;
 
 	i = 0;

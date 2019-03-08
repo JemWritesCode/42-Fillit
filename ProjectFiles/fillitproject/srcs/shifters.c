@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-/*	
+/*
 **	Shifts a piece 'n' places along the x-axis
 */
 
@@ -24,7 +24,7 @@ void	shift_x(t_piece *piece, int n)
 	piece->blockcoords[6] += n;
 }
 
-/*	
+/*
 **	Shifts a piece 'n' places along the y-axis
 */
 

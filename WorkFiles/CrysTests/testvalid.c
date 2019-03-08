@@ -30,16 +30,16 @@ int		charcount(char* buf)
 	while (i < 20)
 	{
 		if (buf[i] && buf[i] != '\n' && buf[i] != '#' && buf[i] != '.') // checks for invalid chars
-			return(0);
+			return (0);
 		if (buf[i] == '\n' && !(((i + 1) % 5) == 0)) // checks for newlines in the wrong places/line length
-			return(0);
+			return (0);
 		if (buf[i] == '#')
 			count++;
 		i++;
 	}
 	if (buf[i] && buf[i] != '\n') // checks block length
-		return(0);
-	return(count); // returns number of '#' characters contained in string
+		return (0);
+	return (count); // returns number of '#' characters contained in string
 }
 
 int		adjacency_counter(char* buf)
@@ -64,7 +64,7 @@ int		adjacency_counter(char* buf)
 		}
 		i++;
 	}
-	return(count);
+	return (count);
 }
 
 int		valid(char *buf, int size)
@@ -75,10 +75,10 @@ int		valid(char *buf, int size)
 	while (i <= size)
 	{
 		if (charcount(buf + i) != 4)
-			return(0);
+			return (0);
 		if (adjacency_counter(buf + i) != 6 && adjacency_counter(buf + i) != 8)
-			return(0);
+			return (0);
 		i += 21;
 	}
-	return(1);
+	return (1);
 }
