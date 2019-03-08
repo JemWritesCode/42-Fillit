@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/07 20:06:05 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 20:33:33 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void			shift_x(t_piece *piece, int n);
 void			shift_y(t_piece *piece, int y);
 int				valid(char *buf, int size);
 void			free_piecelist(t_piece *list);
+void			free_map(t_map *map, int map_size);
 
 #endif

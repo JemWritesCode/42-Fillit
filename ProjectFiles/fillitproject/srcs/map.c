@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 19:12:48 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/17 19:12:49 by jcope            ###   ########.fr       */
+/*   Updated: 2019/03/07 20:41:40 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	print_map(t_map *map, int size)
 }
 
 void	free_map(t_map *map, int map_size)
-{	
+{
 	int i;
 
 	i = 0;

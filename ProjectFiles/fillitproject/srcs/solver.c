@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:38:59 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/15 19:39:00 by jcope            ###   ########.fr       */
+/*   Updated: 2019/03/07 20:32:57 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,4 @@ void	solve(t_piece *piecelist)
 	}
 	print_map(map, map_size);
 	free_map(map, map_size);
-	return (map);
 }

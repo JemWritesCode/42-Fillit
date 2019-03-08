@@ -6,7 +6,7 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 22:23:06 by cschulle          #+#    #+#             */
-/*   Updated: 2019/03/07 20:05:21 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 20:47:01 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_piece		*makepiece(char *buf, char pieceletter)
 		}
 		i++;
 	}
+	piece_ptr->x_offset = 0;
+	piece_ptr->y_offset = 0;
 	piece_ptr->pieceletter = pieceletter;
 	align(piece_ptr);
 	return (piece_ptr);
