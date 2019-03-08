@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/02/26 13:00:58 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 22:16:46 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		charcount(char *buf)
 			count++;
 		i++;
 	}
-	if (buf[i] && buf[i] != '\n')
+	if (buf[i] && buf[i] != '\n') // thowing error on 26Pieces
 		return (0);
 	return (count);
 }
