@@ -6,12 +6,12 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 22:23:06 by cschulle          #+#    #+#             */
-/*   Updated: 2019/02/27 22:25:29 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 20:05:21 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
-
+/*
 void	free_piecelist(t_piece *piecelist)
 {	
 	while (piecelist)
@@ -22,7 +22,7 @@ void	free_piecelist(t_piece *piecelist)
 	}
 	return (NULL);	
 }
-
+*/
 void	align(t_piece *piece)
 {
 	while (piece->blockcoords[0] != 0 && \
