@@ -6,7 +6,7 @@
 #    By: jcope <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/04 20:53:06 by jcope             #+#    #+#              #
-#    Updated: 2019/02/04 20:53:08 by jcope            ###   ########.fr        #
+#    Updated: 2019/03/07 21:31:27 by cschulle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,3 +29,6 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+debug:
+	gcc -o $(NAME) $(SRCS) $(FLAGS) -I $(HDR) -I $(LIBHDR) -g 

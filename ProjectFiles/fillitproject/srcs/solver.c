@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:38:59 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/07 20:32:57 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/07 21:34:03 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void	solve(t_piece *piecelist)
 	map = new_map(map_size);
 	while (!solve_map(map, piecelist, map_size))
 	{
-		map_size++;
 		free_map(map, map_size);
+		map_size++;
 		map = new_map(map_size);
 	}
 	print_map(map, map_size);
