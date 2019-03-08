@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/07 22:16:46 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/08 15:52:16 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		charcount(char *buf)
 
 	count = 0;
 	i = 0;
-	while (i < 20)
+	while (i < 19)
 	{
 		if (buf[i] && buf[i] != '\n' && buf[i] != '#' && buf[i] != '.')
 			return (0);
@@ -37,7 +37,9 @@ int		charcount(char *buf)
 			count++;
 		i++;
 	}
-	if (buf[i] && buf[i] != '\n') // thowing error on 26Pieces
+	if (buf[i] == '\n')
+		i++;
+	if (buf[i] && buf[i] != '\n')
 		return (0);
 	return (count);
 }
@@ -49,7 +51,7 @@ int		adjacency_counter(char *buf)
 
 	i = 0;
 	count = 0;
-	while (i < 21)
+	while (i < 19)
 	{
 		if (buf[i] == '#')
 		{
