@@ -1,6 +1,8 @@
 CLEANUP
 	close file descriptor in parser()
 	put correctly formatted explanation comments above each function
+	Norm everything
+	Prototype ALL THE FUNCTIONS
 	
 MAKEFILE
 	Makefile must compile without relinks -- does it?

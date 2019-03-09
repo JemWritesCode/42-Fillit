@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:08:47 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/07 20:33:33 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:25:46 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,14 @@ int				round_up_sq_rt(int num);
 t_map			*new_map(int size);
 void			solve(t_piece *piecelist);
 t_piece			*parser(char *filename);
+t_piece			*makepiece(char *buf, char pieceletter);
+t_piece			*makelist(char *buf, int size);
+t_piece			*align(t_piece *piece);
 void			shift_x(t_piece *piece, int n);
 void			shift_y(t_piece *piece, int y);
 int				valid(char *buf, int size);
+int				charcount(char *buf);
+int				adjacency_counter(char *buf);
 void			free_piecelist(t_piece *list);
 void			free_map(t_map *map, int map_size);
 

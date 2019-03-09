@@ -6,11 +6,15 @@
 /*   By: cschulle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 22:23:06 by cschulle          #+#    #+#             */
-/*   Updated: 2019/03/07 21:08:31 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/08 19:22:51 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+
+/*
+**	Frees the piece list one piece at a time
+*/
 
 void		free_piecelist(t_piece *list)
 {
@@ -23,6 +27,10 @@ void		free_piecelist(t_piece *list)
 		free(tmp);
 	}
 }
+
+/*
+**	Aligns piece to upper-left corner of its field using shifters
+*/
 
 t_piece		*align(t_piece *piece)
 {
@@ -38,6 +46,13 @@ t_piece		*align(t_piece *piece)
 		shift_y(piece, -1);
 	return (piece);
 }
+
+/*
+** Mallocs a new piece struct
+** Finds & stores coordinates of '#' characters
+** Initializes offsets to zero
+** Returns aligned piece struct
+*/
 
 t_piece		*makepiece(char *buf, char pieceletter)
 {
@@ -68,6 +83,12 @@ t_piece		*makepiece(char *buf, char pieceletter)
 	return (align(piece_ptr));
 }
 
+/*
+** Passes the buffer to makepiece() one piece-chunk at a time (21 chars)
+** Assigns letter to the made piece
+** Returns a linked list of piece structs
+*/
+
 t_piece		*makelist(char *buf, int size)
 {
 	t_piece *current;
@@ -96,6 +117,14 @@ t_piece		*makelist(char *buf, int size)
 	return (beginning);
 }
 
+/*
+** Control function for all file parsing functions
+** Opens & reads file into a buffer of size 545 (max file size + 1)
+** Rejects a file if too small or too large
+** Calls valid() to check validity of file
+** returns list of piece structs
+*/
+
 t_piece		*parser(char *filename)
 {
 	char	buf[545];
@@ -104,6 +133,7 @@ t_piece		*parser(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	bytecount = read(fd, buf, 545);
+	close(fd);
 	if (bytecount > 544 || bytecount < 19)
 		return (NULL);
 	buf[bytecount] = '\0';

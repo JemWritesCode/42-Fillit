@@ -6,18 +6,16 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/08 15:52:16 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/08 19:29:25 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**	WHAT THIS DOES
-**	Checks the following conditions to ensure the given piece-block is valid:
-**	- Contains 4 and only 4 '#' characters
-**	- lines are exactly 4 chars long (excluding newlines)
-**	- Piece block is exactly 4 lines long
-**	- Doesn't contain any invalid characters
-**	- contains a valid number of adjacencies
+**	Checks for any invalid characters
+**	Checks for wrong-length lines ('\n' in an invalid position)
+**	Counts number of '#' characters
+**	Checks for '\n' at end of piece block
+**	Returns false (0) if any checks are failed
 */
 
 int		charcount(char *buf)
@@ -44,6 +42,12 @@ int		charcount(char *buf)
 	return (count);
 }
 
+/*
+**	Checks each '#' character to see if it's adjacent to another
+**	Returns a count of these adjacencies to validate piece shape
+**	A valid piece with 4 '#' characters will either have 6 or 8 adjacencies
+*/
+
 int		adjacency_counter(char *buf)
 {
 	int i;
@@ -68,6 +72,12 @@ int		adjacency_counter(char *buf)
 	}
 	return (count);
 }
+
+/*
+**	Iterates through buf 21 char (one piece chunk) at a time
+**	Calls checking functions to confirm validity
+**	Returns false (0) if any checks are failed
+*/
 
 int		valid(char *buf, int size)
 {
