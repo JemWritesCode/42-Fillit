@@ -1,0 +1,16 @@
+CLEANUP
+	close file descriptor in parser()
+	put correctly formatted explanation comments above each function
+	
+MAKEFILE
+	Makefile must compile without relinks -- does it?
+	Do we want to take out the debug rule?
+
+FILE STRUCTURE
+	Executable must be in root directory (are we planning on that being ProjectFiles?)
+	All sources and headers must be in the same folder.
+	We can have two folders, one for libft and one for fillit.
+
+PROGRAM FUNCTION
+	Unclear from PDF if we should accept files that don't have a \n at the end -- ask peers.
+	Unclear what the time limit for running is -- ask peers.
