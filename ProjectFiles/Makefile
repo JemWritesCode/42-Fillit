@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = ./fillitproject/srcs/*.c libft/*.c
-OBJS = ./fillitproject/srcs/*.o libft/*.o
-HDR = ./fillitproject/includes/fillit.h 
+SRCS = ./fillitproject/*.c libft/*.c
+OBJS = ./fillitproject/*.o libft/*.o
+HDR = ./fillitproject/fillit.h 
 LIBHDR = libft/libft.h
 FLAGS = -Wall -Wextra -Werror
 
