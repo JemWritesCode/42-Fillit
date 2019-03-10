@@ -6,7 +6,7 @@
 /*   By: jcope <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:57:54 by jcope             #+#    #+#             */
-/*   Updated: 2019/03/08 19:29:25 by cschulle         ###   ########.fr       */
+/*   Updated: 2019/03/09 21:16:27 by cschulle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int		charcount(char *buf)
 			count++;
 		i++;
 	}
-	if (buf[i] == '\n')
-		i++;
-	if (buf[i] && buf[i] != '\n')
+	if (!buf[i] || buf[i] != '\n')
 		return (0);
 	return (count);
 }
