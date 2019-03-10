@@ -29,6 +29,3 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
-
-debug:
-	gcc -o $(NAME) $(SRCS) $(FLAGS) -I $(HDR) -I $(LIBHDR) -g 
