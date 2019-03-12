@@ -1,5 +1,5 @@
 # 42-Fillit
-Score: 100/100 (Outstanding Project x 3)
+`Score: 100/100 (Outstanding Project x 3)`
 
 Algorithms - Fit tetris pieces into the smallest square possible.
 
