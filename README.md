@@ -9,6 +9,8 @@ Program Specs: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/fillit
 Code Formatting Standards: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/Norm.pdf>
 
 # How does it work?
+You can look in the Project files we turned in -- we put in comments to explain the functions. 
+
 First the file is read by the parser and all the pieces are checked to make sure they are valid. If it is, it's passed to the solver.
 
 The solver works using recursive backtracking. If the piece doesn't overlap any other pieces it places it on the map and then tries to call solve_map on all of the other pieces. If they all fit with the current piece in place then it succeeds. If not it moves the current piece and tries to solve the rest of the pieces with the current piece in it's new place. If it's moved all the pieces and still can't make them fit on the current map then it exits the solver, makes a larger map, and then tries to solve again.
