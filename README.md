@@ -21,7 +21,7 @@ The `valid.c` file:
 * Checks for wrong-length lines ('\n' in an invalid position)
 * Counts number of '#' characters (Must be 4)
 * Checks for '\n' at end of piece block
-* Checks each '#' character to see if it's adjacent to another - A valid piece with 4 '#' characters will either have 6 or 8 adjacencies. 
+* Checks each '#' character to see if it's adjacent to another - A valid piece with 4 '#' characters will either have 6 or 8 adjacencies. (This is the "Count Method" that is mentioned on [Beth Nenniger's blog post.](https://medium.com/@bethnenniger/fillit-solving-for-the-smallest-square-of-tetrominos-c6316004f909) )
 
 ![PossibleTetriminos](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/Screen%20Shot%202019-03-19%20at%206.38.58%20PM.png?raw=true)
 
