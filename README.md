@@ -38,7 +38,7 @@ The solver works using recursive backtracking. If the piece doesn't overlap any 
 
 ![SampleProblem2](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/Screen%20Shot%202019-03-19%20at%206.42.45%20PM.png?raw=true)
 
-![SampleProblem3](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/RecursiveBacktracking.png?raw=true)
+![SampleProblem3](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/RecursiveBacktrack.png?raw=true)
 
 
 # Speed Requirements
