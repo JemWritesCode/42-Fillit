@@ -9,15 +9,20 @@ Program Specs: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/fillit
 Code Formatting Standards: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/Norm.pdf>
 
 # How does it work?
-Our functions are also commented in our Project Files for more information.
+Our functions are also commented in our Project Files.
 
 First the file is read by the parser and all the pieces are checked to make sure they are valid. These are the only valid pieces. 
 
 The `valid.c` file:
+
 Checks for any invalid characters
+
 Checks for wrong-length lines ('\n' in an invalid position)
+
 Counts number of '#' characters (Must be 4)
+
 Checks for '\n' at end of piece block
+
 Checks each '#' character to see if it's adjacent to another - A valid piece with 4 '#' characters will either have 6 or 8 adjacencies. 
 
 ![PossibleTetriminos](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/Screen%20Shot%202019-03-19%20at%206.38.58%20PM.png?raw=true)
