@@ -27,7 +27,7 @@ The `valid.c` file:
 
 The `makepiece()` function then finds and stores the # characters and turns them into (x,y) coords in a piece struct. It calls the `align()` function to make sure the piece is shifted to the top left of the map. These pieces are stored in a linked list with `makelist()`
 
-![ArrayToCoords](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/Screen%20Shot%202019-03-19%20at%206.41.01%20PM.png?raw=true)
+![ArrayToCoords](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/BufArrayToCoords.png?raw=true)
 
 
 The solver works using recursive backtracking. If the piece doesn't overlap any other pieces it places it on the map and then tries to call solve_map on all of the other pieces. If they all fit with the current piece in place then it succeeds. If not it moves the current piece and tries to solve the rest of the pieces with the current piece in it's new place. If it's moved all the pieces and still can't make them fit on the current map then it exits the solver, makes a larger map, and then tries to solve again.
