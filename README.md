@@ -42,6 +42,7 @@ The solver works using recursive backtracking. If the piece doesn't overlap any 
 
 
 # Speed Requirements
+This is not on the PDF but is a requirement by the grading scale.
 
 `time ./fillit test1.prm`
 
