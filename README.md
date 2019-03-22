@@ -54,7 +54,7 @@ The solver works using recursive backtracking. If the piece doesn't overlap any 
     1-5 seconds -> 4pt
     < 1 second -> 5 pt
 
-Ours scores 0.00s in both cases.
+Ours scores 0.00s in both cases so we got max score on this part.
 
 # Team
 Jem Cope <https://github.com/Jemmeh>
