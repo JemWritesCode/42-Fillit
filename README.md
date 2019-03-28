@@ -8,12 +8,20 @@ Program Specs: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/fillit
 
 Code Formatting Standards: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/Norm.pdf>
 
+# What Fillit Does:
+Fillit recieves a map text file like this one with pieces.
+![Valid Map](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/ExampleMapFile.png?raw=true)
+
+It finds the smallest possible square the pieces can be arranged in and prints out the square like this:
+![SolvedSquare](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/ExplainationImages/ExampleSolution.png?raw=true)
+
+
 # How does it work?
 Our functions are also commented in our Project Files.
 
 This project relies on the [standard C Libary functions that we had to recode for our first project.](https://github.com/Jemmeh/Libft)
 
-First the file is read by the parser and all the pieces are checked to make sure they are valid. These are the only valid pieces. 
+First the file is read by the parser and all the pieces are checked to make sure they are valid. These are the only valid pieces. The map file format is like this:
 
 The `valid.c` file:
 
