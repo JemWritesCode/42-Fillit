@@ -23,7 +23,7 @@ Our functions are also commented in our Project Files.
 
 This project relies on the [standard C Libary functions that we had to recode for our first project.](https://github.com/Jemmeh/Libft)
 
-First the file is read by the parser and all the pieces are checked to make sure they are valid. These are the only valid pieces. The map file format is like this:
+First the file is read by the parser and all the pieces are checked to make sure they are valid. These are the only valid pieces. 
 
 The `valid.c` file:
 
