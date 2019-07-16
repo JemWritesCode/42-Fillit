@@ -4,9 +4,9 @@
 
 `Score: 100/100 (Outstanding Project x 3)`
 
-Program Specs: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/fillit.en.pdf>
+[Program Specs](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/fillit.en.pdf)
 
-Code Formatting Standards: <https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/Norm.pdf>
+[School Code Formatting Standards - The Norm](https://github.com/Jemmeh/42-Fillit/blob/master/WorkFiles/Norm.pdf)
 
 # What Fillit Does:
 Fillit recieves a map text file like this one with pieces.
@@ -70,6 +70,6 @@ This is not on the PDF but is a requirement by the grading scale.
 Ours scores 0.00s in both cases so we got max score on this part.
 
 # Team
-Jem Cope <https://github.com/Jemmeh>
+[Jem Cope](https://github.com/Jemmeh)
 
-Crystal Schuller <https://github.com/tasertasertaser>
+[Crystal Schuller](https://github.com/tasertasertaser)
